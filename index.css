@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap');
+
+body{
+    background-image: linear-gradient(rgba(255,0,0,0),  rgba(230,230,250,1)), url('assets/bg.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    font-family: "Afacad Flux", sans-serif;
+    font-style: normal;
+}
+
+#signup, #login {
+    max-width: 20%;
+
+    /* boder of the div */
+    border: 1px solid black;
+    border-radius: 1rem;
+    padding: 2rem;
+
+    /* background */
+    background-color: #F2F0F0;
+}
+
+.inputText, button {
+    width: 100%;
+    margin: 0.5rem 0rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #F0bc6c;
+}
+
+.adiv{
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.pwdiv {
+    width: 100%;
+    margin: 0.5rem 0rem;
+}
+
+#lpassword, #spassword, #confirmPassword {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    box-sizing: border-box;
+}
+
+#ltogglePassword, #stogglePassword, #toggleConfirmPassword {
+    margin-left: -30px;
+    cursor: pointer;
+}
+
