@@ -6,6 +6,7 @@
     <title>Finance Tracker Dashboard</title>
     <link rel="stylesheet" href="../css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts/scripts.js"></script>
 </head>
 <body>
     <div class="container">
@@ -19,7 +20,7 @@
                 <li><a href="#">🎯 Goals</a></li> 
             </ul>
             <div class="sidebar-footer">
-                <a href="#">Profile</a>
+                <a href="profile.php">Profile</a>
                 <a href="logout.php">Logout</a>
             </div>
         </nav>

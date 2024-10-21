@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Signup</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <script src="scripts/scripts.js"></script>
 </head>
 <body>
     <div class="auth-container">

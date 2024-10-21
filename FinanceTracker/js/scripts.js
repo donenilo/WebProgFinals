@@ -87,3 +87,54 @@ function updateBalanceChart(remaining, expense) {
 
 // Poll every 5 seconds for real-time updates
 setInterval(pollDashboardData, 5000);
+
+
+// Fetch and display user data on the profile page
+document.addEventListener('DOMContentLoaded', () => {
+  fetch('../api/get_user_data.php')
+    .then((response) => response.json())
+    .then((data) => {
+      document.getElementById('usernameDisplay').textContent = data.username;
+      document.getElementById('emailDisplay').textContent = data.email;
+    })
+    .catch((error) => console.error('Error fetching user data:', error));
+});
+
+// Handle password change
+const changePasswordForm = document.getElementById('changePasswordForm');
+changePasswordForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  const formData = new FormData(changePasswordForm);
+  fetch('../api/change_password.php', {
+    method: 'POST',
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        alert('Password updated successfully!');
+      } else {
+        alert(data.message || 'Password update failed.');
+      }
+    })
+    .catch((error) => console.error('Error updating password:', error));
+});
+
+// Handle account deletion
+const deleteAccountBtn = document.getElementById('deleteAccountBtn');
+deleteAccountBtn.addEventListener('click', () => {
+  if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+    fetch('../api/delete_account.php', { method: 'POST' })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          alert('Account deleted successfully.');
+          window.location.href = '../logout.php';
+        } else {
+          alert(data.message || 'Account deletion failed.');
+        }
+      })
+      .catch((error) => console.error('Error deleting account:', error));
+  }
+});
