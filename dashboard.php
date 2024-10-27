@@ -1,10 +1,25 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['user_id'])) {
+        header('Location: login.php');
+        exit();
+    }
+    include 'db_connection.php';
+    $user_id = $_SESSION['user_id'];
+
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finance Tracker Dashboard</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="scripts/scripts.js"></script>
 </head>
@@ -74,21 +89,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Popup Forms
-    <div class="popup" id="popup-income">
-        <h2>Add New Income</h2>
-        <input type="number" id="income-amount" placeholder="Enter Income Amount">
-        <button onclick="addIncome()">Add Income</button>
-        <button onclick="closePopup('income')">Cancel</button>
-    </div>
-
-    <div class="popup" id="popup-expense">
-        <h2>Add New Expense</h2>
-        <input type="number" id="expense-amount" placeholder="Enter Expense Amount">
-        <button onclick="addExpense()">Add Expense</button>
-        <button onclick="closePopup('expense')">Cancel</button>
-    </div> -->
 
     <script src="scripts.js"></script>
 </body>
