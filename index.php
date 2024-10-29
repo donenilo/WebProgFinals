@@ -1,5 +1,6 @@
 <?php
 include 'db_connection.php';
+session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
@@ -11,9 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
         if (password_verify($password, $user['password_hash'])) {
-            session_start();
             $_SESSION['user_id'] = $user['id'];
             header("Location: dashboard.php");
+            exit();
         } else {
             echo "Invalid password.";
         }
@@ -39,12 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
     <div class="auth-container">
         <h2>Login</h2>
-        <form action="index.php" method="POST">
+        <form action="WebProgFinals/index.php" method="POST">
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
-        <p>Don't have an account? <a href="signup.php">Sign up</a></p>
+        <p>Don't have an account? <a href="WebProgFinals/signup.php">Sign up</a></p>
     </div>
 </body>
 </html>

@@ -8,7 +8,7 @@ $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the pas
 $query = "INSERT INTO users (username, email, password_hash) VALUES ('$username', '$email', '$password')";
 
 if ($conn->query($query) === TRUE) {
-    header("Location: pages/login.php");
+    header("Location: index.php");
 } else {
     echo "Error: " . $query . "<br>" . $conn->error;
 }

@@ -1,17 +1,14 @@
 <?php
-    session_start();
-    if(!isset($_SESSION['user_id'])) {
-        header('Location: login.php');
-        exit();
-    }
-    include 'db_connection.php';
-    $user_id = $_SESSION['user_id'];
+include 'db_connection.php';
+session_start();
 
+if (!isset($_SESSION['user_id'])) {
+    header('Location: index.php');
+    exit();
+}
 
-
+$user_id = $_SESSION['user_id'];
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
