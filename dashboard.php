@@ -27,10 +27,10 @@ $user_id = $_SESSION['user_id'];
             <h2>Finance Tracker</h2>
             <ul>
                 <li class="active"><a href="#">📊 Dashboard</a></li>
-                <li><a href="#">✏️ Tracking</a></li>
-                <li><a href="#">📥 Income</a></li>
-                <li><a href="#">💸 Expense</a></li>
-                <li><a href="#">🎯 Goals</a></li> 
+                <li><a href="income.php">✏️ Tracking</a></li>
+                <li><a href="income.php">📥 Income</a></li>
+                <li><a href="expense.php">💸 Expense</a></li>
+                <li><a href="goals.php">🎯 Goals</a></li> 
             </ul>
             <div class="sidebar-footer">
                 <a href="profile.php">Profile</a>

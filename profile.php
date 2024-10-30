@@ -1,3 +1,29 @@
+<?php
+include 'db_connection.php';
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    // echo "Please login first.";
+    // header('Location: index.php');
+    // exit();
+}
+
+// $user_id = $_SESSION['user_id'];
+$user_id = 1;
+
+$query = "SELECT * FROM users WHERE user_id = 1";
+
+$result = mysqli_query($conn, $query);
+$username= mysqli_fetch_assoc($result);
+$email= mysqli_fetch_assoc($result);
+
+if(!$result) {
+    die("query failed".mysqli_error($conn));
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,43 +34,50 @@
     <script src="scripts/scripts.js" defer></script>
 </head>
 <body>
-    <div class="sidebar">
+<div class="container">
+    <nav class="sidebar">
         <h2>Finance Tracker</h2>
         <ul>
             <li><a href="dashboard.php">📊 Dashboard</a></li>
             <li><a href="income.php">✏️ Tracking</a></li>
-            <li><a href="income.php">📥 Income</a></li>
+            <li class="active"><a href="income.php">📥 Income</a></li>
             <li><a href="expense.php">💸 Expense</a></li>
-            <li><a href="#">🎯 Goals</a></li> 
+            <li><a href="goals.php">🎯 Goals</a></li> 
         </ul>
         <div class="sidebar-footer">
             <a href="profile.php">Profile</a>
             <a href="logout.php">Logout</a>
         </div>
-  </div>
+    </nav>
 
-    <div class="main-content-profile">
-        <div class="profile-header">
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Income</h1>
+        <div class="profile">
+            <h2>Profile</h2>
             <div class="profile-info">
-                <img src="profile-avatar.png" alt="Profile Avatar" class="avatar">
-                <div class="user-details">
-                    <h2 id="usernameDisplay">Username</h2>
-                    <p id="emailDisplay">useremail@account.com</p>
-                </div>
+                <p><strong>Username:</strong> <?php echo $username['username']; ?></p>
+                <p><strong>Email:</strong> <?php echo $email['email']; ?></p>
             </div>
-        </div>
-
-        <div class="profile-settings">
-            <h3>Change your password</h3>
-            <form id="changePasswordForm">
-                <input type="password" name="current_password" placeholder="Enter your current password" required>
-                <input type="password" name="new_password" placeholder="Enter your new password" required>
-                <input type="password" name="confirm_password" placeholder="Confirm your new password" required>
-                <button type="submit">Update Password</button>
-            </form>
-
-            <button class="delete-account-btn" id="deleteAccountBtn">Delete Account</button>
-        </div>
+        <h3>Update Password</h3>
+        <form action="update_password.php" method="POST">
+            <div class="form-group">
+                <label for="current_password">Current Password:</label>
+                <input type="password" id="current_password" name="current_password" required>
+            </div>
+            <div class="form-group">
+                <label for="new_password">New Password:</label>
+                <input type="password" id="new_password" name="new_password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirm New Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+            </div>
+            <button type="submit">Update Password</button>
+        </form>
     </div>
+</div>
+
 </body>
 </html>

@@ -38,7 +38,7 @@ $user_id = $_SESSION['user_id'];
 
         <!-- Main Content -->
         <div class="main-content">
-            <h1>Income</h1>
+            <h1>Expense</h1>
             <!-- Content specific to the income page will go here -->
         </div>
     </div>
