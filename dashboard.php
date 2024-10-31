@@ -18,8 +18,8 @@ $user_id = $_SESSION['user_id'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finance Tracker Dashboard</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="scripts/scripts.js"></script>
 </head>
 <body>
     <div class="container">
@@ -74,8 +74,8 @@ $user_id = $_SESSION['user_id'];
 
             <!-- Quick Add Section -->
             <div class="quick-add">
-                <button class="btn btn-income" onclick="openPopup('income')">⬆️ New Income</button>
-                <button class="btn btn-expense" onclick="openPopup('expense')">💲 New Expense</button>
+                <button type="button" class="btn btn-income" data-bs-toggle="modal" data-bs-target="#newIncomeModal">⬆️ New Income</button>
+                <button type="button" class="btn btn-expense" data-bs-toggle="modal" data-bs-target="#newExpenseModal">💲 New Expense</button>
             </div>
 
             <!-- Recent Transactions -->
@@ -88,6 +88,48 @@ $user_id = $_SESSION['user_id'];
         </div>
     </div>
 
-    <script src="scripts.js"></script>
+    <!-- New Income Modal -->
+    <form>
+        <div class="modal fade" id="newIncomeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Input Income Details</h5>
+                    </div>
+                    <div class="modal-body">
+                            <div class="form-group">
+                                <label for="Date">Date</label>
+                                <input type="date" class="form-control" id="incomeSourceDate" placeholder="Enter date">
+                            </div>
+                            <div class="form-group">
+                                <label for="incomeDescription">Income Description</label>
+                                <input type="text" class="form-control" id="incomeSourceDescription" placeholder="Enter income source description">
+                            </div>
+                            <div class="form-group">
+                                <label for="incomeAmount">Income Amount</label>
+                                <input type="number" class="form-control" id="incomeSourceAmount" placeholder="Enter income source amount">
+                            </div>
+                            <div class="form-group">
+                                <label for="incomeSource">Income Source</label>
+                                <select class="form-control" id="incomeSourceCategory">
+                                    <!-- Placeholders only, not yet connected with database -->
+                                    <option value="Salary">Salary</option>
+                                    <option value="Business">Business</option>
+                                    <option value="Investment">Investment</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -21,7 +21,7 @@ if (!isset($_SESSION['user_id'])) {
     //     die("query failed".mysqli_error($conn));
     // }
 
-
+    
 }
 
 $user_id = $_SESSION['user_id'];
