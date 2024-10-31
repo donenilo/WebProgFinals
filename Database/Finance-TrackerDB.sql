@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2024 at 04:35 PM
+-- Generation Time: Oct 31, 2024 at 04:50 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -24,45 +24,29 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `expensecategories`
+-- Table structure for table `categories`
 --
 
-CREATE TABLE `expensecategories` (
+CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `category_name` varchar(100) NOT NULL
+  `User_id` int(11) DEFAULT NULL,
+  `category_name` varchar(50) NOT NULL,
+  `category_type` enum('Income','Expense') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `expenses`
+-- Table structure for table `expense`
 --
 
-CREATE TABLE `expenses` (
+CREATE TABLE `expense` (
   `expense_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `category_id` int(11) DEFAULT NULL,
-  `amount` decimal(10,2) NOT NULL,
-  `date_spent` date NOT NULL,
-  `description` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `goals`
---
-
-CREATE TABLE `goals` (
-  `goal_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `goal_title` varchar(100) NOT NULL,
-  `target_amount` decimal(10,2) NOT NULL,
-  `saved_amount` decimal(10,2) DEFAULT 0.00,
-  `target_date` date NOT NULL,
-  `status` enum('in-progress','achieved','canceled') DEFAULT 'in-progress',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `User_id` int(11) DEFAULT NULL,
+  `expense_date` date NOT NULL,
+  `expense_description` text DEFAULT NULL,
+  `expense_amount` decimal(10,2) NOT NULL,
+  `category_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -73,40 +57,11 @@ CREATE TABLE `goals` (
 
 CREATE TABLE `income` (
   `income_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `income_source` varchar(100) NOT NULL,
-  `amount` decimal(10,2) NOT NULL,
-  `date_received` date NOT NULL,
-  `description` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `profiles`
---
-
-CREATE TABLE `profiles` (
-  `profile_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `full_name` varchar(100) DEFAULT NULL,
-  `bio` text DEFAULT NULL,
-  `profile_picture` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `transactions`
---
-
-CREATE TABLE `transactions` (
-  `transaction_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `type` enum('income','expense') NOT NULL,
-  `reference_id` int(11) NOT NULL,
-  `amount` decimal(10,2) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp()
+  `User_id` int(11) DEFAULT NULL,
+  `income_date` date NOT NULL,
+  `income_description` text DEFAULT NULL,
+  `income_amount` decimal(10,2) NOT NULL,
+  `category_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -116,25 +71,10 @@ CREATE TABLE `transactions` (
 --
 
 CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password_hash` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `usersessions`
---
-
-CREATE TABLE `usersessions` (
-  `session_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `session_token` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `User_id` int(11) NOT NULL,
+  `Username` varchar(50) NOT NULL,
+  `Email` varchar(100) NOT NULL,
+  `Password_Hash` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -142,85 +82,50 @@ CREATE TABLE `usersessions` (
 --
 
 --
--- Indexes for table `expensecategories`
+-- Indexes for table `categories`
 --
-ALTER TABLE `expensecategories`
+ALTER TABLE `categories`
   ADD PRIMARY KEY (`category_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `User_id` (`User_id`);
 
 --
--- Indexes for table `expenses`
+-- Indexes for table `expense`
 --
-ALTER TABLE `expenses`
+ALTER TABLE `expense`
   ADD PRIMARY KEY (`expense_id`),
-  ADD KEY `user_id` (`user_id`),
+  ADD KEY `User_id` (`User_id`),
   ADD KEY `category_id` (`category_id`);
-
---
--- Indexes for table `goals`
---
-ALTER TABLE `goals`
-  ADD PRIMARY KEY (`goal_id`),
-  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `income`
 --
 ALTER TABLE `income`
   ADD PRIMARY KEY (`income_id`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `profiles`
---
-ALTER TABLE `profiles`
-  ADD PRIMARY KEY (`profile_id`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `transactions`
---
-ALTER TABLE `transactions`
-  ADD PRIMARY KEY (`transaction_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `User_id` (`User_id`),
+  ADD KEY `category_id` (`category_id`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- Indexes for table `usersessions`
---
-ALTER TABLE `usersessions`
-  ADD PRIMARY KEY (`session_id`),
-  ADD UNIQUE KEY `session_token` (`session_token`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`User_id`),
+  ADD UNIQUE KEY `Email` (`Email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `expensecategories`
+-- AUTO_INCREMENT for table `categories`
 --
-ALTER TABLE `expensecategories`
+ALTER TABLE `categories`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `expenses`
+-- AUTO_INCREMENT for table `expense`
 --
-ALTER TABLE `expenses`
+ALTER TABLE `expense`
   MODIFY `expense_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `goals`
---
-ALTER TABLE `goals`
-  MODIFY `goal_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `income`
@@ -229,75 +134,34 @@ ALTER TABLE `income`
   MODIFY `income_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `profiles`
---
-ALTER TABLE `profiles`
-  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `transactions`
---
-ALTER TABLE `transactions`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `usersessions`
---
-ALTER TABLE `usersessions`
-  MODIFY `session_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `User_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `expensecategories`
+-- Constraints for table `categories`
 --
-ALTER TABLE `expensecategories`
-  ADD CONSTRAINT `expensecategories_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+ALTER TABLE `categories`
+  ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`User_id`) REFERENCES `users` (`User_id`);
 
 --
--- Constraints for table `expenses`
+-- Constraints for table `expense`
 --
-ALTER TABLE `expenses`
-  ADD CONSTRAINT `expenses_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `expenses_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `expensecategories` (`category_id`);
-
---
--- Constraints for table `goals`
---
-ALTER TABLE `goals`
-  ADD CONSTRAINT `goals_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+ALTER TABLE `expense`
+  ADD CONSTRAINT `expense_ibfk_1` FOREIGN KEY (`User_id`) REFERENCES `users` (`User_id`),
+  ADD CONSTRAINT `expense_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`);
 
 --
 -- Constraints for table `income`
 --
 ALTER TABLE `income`
-  ADD CONSTRAINT `income_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
-
---
--- Constraints for table `profiles`
---
-ALTER TABLE `profiles`
-  ADD CONSTRAINT `profiles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
-
---
--- Constraints for table `transactions`
---
-ALTER TABLE `transactions`
-  ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
-
---
--- Constraints for table `usersessions`
---
-ALTER TABLE `usersessions`
-  ADD CONSTRAINT `usersessions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `income_ibfk_1` FOREIGN KEY (`User_id`) REFERENCES `users` (`User_id`),
+  ADD CONSTRAINT `income_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -14,8 +14,9 @@ $user_id = 1;
 $query = "SELECT * FROM users WHERE user_id = 1";
 
 $result = mysqli_query($conn, $query);
-$username= mysqli_fetch_assoc($result);
-$email= mysqli_fetch_assoc($result);
+$user = mysqli_fetch_assoc($result);
+$username = $user['username'];
+$email = $user['email'];
 
 if(!$result) {
     die("query failed".mysqli_error($conn));
