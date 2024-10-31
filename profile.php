@@ -15,8 +15,8 @@ $query = "SELECT * FROM users WHERE user_id = 1";
 
 $result = mysqli_query($conn, $query);
 $user = mysqli_fetch_assoc($result);
-$username = $user['username'];
-$email = $user['email'];
+$username = $user['Username'];
+$email = $user['Email'];
 
 if(!$result) {
     die("query failed".mysqli_error($conn));
@@ -58,8 +58,8 @@ if(!$result) {
         <div class="profile">
             <h2>Profile</h2>
             <div class="profile-info">
-                <p><strong>Username:</strong> <?php echo $username['username']; ?></p>
-                <p><strong>Email:</strong> <?php echo $email['email']; ?></p>
+                <p><strong>Username:</strong> <?php echo $username; ?></p>
+                <p><strong>Email:</strong> <?php echo $email; ?></p>
             </div>
         <h3>Update Password</h3>
         <form action="update_password.php" method="POST">
