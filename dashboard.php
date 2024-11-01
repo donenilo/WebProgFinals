@@ -2,13 +2,55 @@
 include 'config/db_connection.php';
 session_start();
 
-if (!isset($_SESSION['user_id'])) {
-    // echo "Please login first.";
-    // header('Location: index.php');
-    // exit();
+if (!isset($_SESSION['User_id'])) {
+    echo "Please login first.";
+    header('Location: index.php');
+    exit();
 }
 
-$user_id = $_SESSION['user_id'];
+$user_id = $_SESSION['User_id'];
+
+
+// Fetch total income, expense, savings, and remaining balance
+$query = "SELECT 
+    u.User_id,
+    COALESCE(i.total_income, 0) AS total_income,
+    COALESCE(e.total_expense, 0) AS total_expense,
+    COALESCE(s.total_savings, 0) AS total_savings,
+    (COALESCE(i.total_income, 0) 
+    - COALESCE(e.total_expense, 0) 
+    - COALESCE(s.total_savings, 0)) AS total_remaining_balance
+FROM 
+    Users u
+LEFT JOIN (
+    SELECT User_id, SUM(income_amount) AS total_income
+    FROM Income
+    GROUP BY User_id
+) i ON u.User_id = i.User_id
+LEFT JOIN (
+    SELECT User_id, SUM(expense_amount) AS total_expense
+    FROM Expense
+    GROUP BY User_id
+) e ON u.User_id = e.User_id
+LEFT JOIN (
+    SELECT User_id, SUM(savings_amount) AS total_savings
+    FROM Savings
+    GROUP BY User_id
+) s ON u.User_id = s.User_id
+WHERE 
+    u.User_id = ?;
+";
+
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+$TIncome = $user['total_income'];
+$TExpense = $user['total_expense'];
+$TSavings = $user['total_savings'];
+$TRemaining = $user['total_remaining_balance'];
+$stmt->close();
 ?>
 
 <!DOCTYPE html>
@@ -17,8 +59,8 @@ $user_id = $_SESSION['user_id'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finance Tracker Dashboard</title>
-    <link rel="stylesheet" href="css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -46,15 +88,19 @@ $user_id = $_SESSION['user_id'];
             <div class="card-container">
                 <div class="card balance">
                     <p>Total Balance</p>
-                    <h2 id="total-balance">₱0.00</h2>
+                    <h2 id="total-balance"><?php echo $TRemaining; ?></h2>
+                </div>
+                <div class="card savings">
+                    <p>Total Savings</p>
+                    <h2 id="total-savings"><?php echo $TSavings; ?></h2>
                 </div>
                 <div class="card income">
                     <p>Total Income</p>
-                    <h2 id="total-income">₱0.00</h2>
+                    <h2 id="total-income"><?php echo $TIncome; ?></h2>
                 </div>
                 <div class="card expense">
                     <p>Total Expense</p>
-                    <h2 id="total-expense">₱0.00</h2>
+                    <h2 id="total-expense"><?php echo $TExpense; ?></h2>
                 </div>
             </div>
 

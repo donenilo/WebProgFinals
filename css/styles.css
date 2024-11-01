@@ -85,8 +85,10 @@ body {
 }
 
 .balance { background-color: #5bc0de; }
+.savings { background-color: #fdfd96;}
 .income { background-color: #5cb85c; }
 .expense { background-color: #d9534f; }
+
 
 .quick-add .btn {
     width: 100%;

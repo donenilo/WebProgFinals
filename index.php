@@ -2,12 +2,7 @@
 include 'config/db_connection.php';
 session_start();
 
-// Check if the user is already logged in
-if (isset($_SESSION['user_id'])) {
-    header("Location: dashboard.php");
-    exit();
-}
-
+// Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -18,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
         if (password_verify($password, $user['Password_Hash'])) {
-            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['User_id'] = $user['User_id'];
             header("Location: dashboard.php");
             exit();
         } else {

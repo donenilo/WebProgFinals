@@ -2,29 +2,26 @@
 include 'config/db_connection.php';
 session_start();
 
-if (!isset($_SESSION['user_id'])) {
-    // echo "Please login first.";
-    // header('Location: index.php');
-    // exit();
-
-    // insert query to get the income data
-    // $query = "SELECT I.income_id, I.User_id, I.income_date, I.income_description, I.income_amount, C.category_name FROM Income AS I JOIN Categories AS C ON Income.category_id = C.category_id WHERE I.User_id = $user_id;";
-    // $result = mysqli_query($conn, $query);  
-    // $income = mysqli_fetch_assoc($result);
-    // $income_id = $income['I.income_id'];
-    // $income_date = $income['I.income_date'];
-    // $income_description = $income['I.income_description'];
-    // $income_amount = $income['I.income_amount'];
-    // $category_name = $income['C.category_name'];
-
-    // if(!$result) {  
-    //     die("query failed".mysqli_error($conn));
-    // }
-
-    
+if (!isset($_SESSION['User_id'])) {
+    echo "Please login first.";
+    header('Location: index.php');
+    exit();
 }
 
-$user_id = $_SESSION['user_id'];
+$user_id = $_SESSION['User_id'];
+
+// Fetch categories where User_id = ? and category_type = 'Income'
+$category_type = 'Income';
+$sql = "SELECT category_id, category_name FROM Categories WHERE User_id = $user_id AND category_type = 'Income';";
+$result = mysqli_query($conn, $sql);
+if (!$result) {
+    die("Query failed: " . mysqli_error($conn));
+}
+// output data of each row
+$categories = [];
+while ($row = $result->fetch_assoc()) {
+    $categories[] = $row; // Store each category in an array
+}
 ?>
 
 <!DOCTYPE html>
@@ -33,8 +30,8 @@ $user_id = $_SESSION['user_id'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finance Tracker Income</title>
-    <link rel="stylesheet" href="css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="container">
@@ -57,7 +54,35 @@ $user_id = $_SESSION['user_id'];
         <div class="main-content">
             <h1>Income</h1>
             <div class="income_table_display">
-            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                        // insert query to get the income data
+                        $query = "SELECT I.income_id, I.User_id, I.income_date, I.income_description, I.income_amount, C.category_name FROM Income AS I JOIN Categories AS C ON I.category_id = C.category_id WHERE I.User_id = $user_id;";
+                        $result = mysqli_query($conn, $query);  
+                        if(!$result) {  
+                            die("query failed".mysqli_error($conn));
+                        }
+                        // output data of each row
+                        while($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . $row["income_date"] . "</td>";
+                            echo "<td>" . $row["income_description"] . "</td>";
+                            echo "<td>" . $row["income_amount"] . "</td>";
+                            echo "<td>" . $row["category_name"] . "</td>";
+                            echo "</tr>";
+                        }
+                    ?>
+                </tbody>
+            </table>
             </div>
             <div class="income_sources">
 
@@ -69,7 +94,7 @@ $user_id = $_SESSION['user_id'];
         </div>
     </div>
     <!-- New Income Modal -->
-    <form>
+    <form action="config/income_input.php" method="POST">
         <div class="modal fade" id="newIncomeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -77,33 +102,31 @@ $user_id = $_SESSION['user_id'];
                         <h5 class="modal-title" id="exampleModalLabel">Input Income Details</h5>
                     </div>
                     <div class="modal-body">
-                            <div class="form-group">
-                                <label for="Date">Date</label>
-                                <input type="date" class="form-control" id="incomeSourceDate" placeholder="Enter date">
-                            </div>
-                            <div class="form-group">
-                                <label for="incomeDescription">Income Description</label>
-                                <input type="text" class="form-control" id="incomeSourceDescription" placeholder="Enter income source description">
-                            </div>
-                            <div class="form-group">
-                                <label for="incomeAmount">Income Amount</label>
-                                <input type="number" class="form-control" id="incomeSourceAmount" placeholder="Enter income source amount">
-                            </div>
-                            <div class="form-group">
-                                <label for="incomeSource">Income Source</label>
-                                <select class="form-control" id="incomeSourceCategory">
-                                    <!-- Placeholders only, not yet connected with database -->
-                                    <option value="Salary">Salary</option>
-                                    <option value="Business">Business</option>
-                                    <option value="Investment">Investment</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                        </form>
+                        <div class="form-group">
+                            <label for="Date">Date</label>
+                            <input type="date" class="form-control" name="income_date" placeholder="Enter date">
+                        </div>
+                        <div class="form-group">
+                            <label for="incomeDescription">Income Description</label>
+                            <input type="text" class="form-control" name="income_description" placeholder="Enter income source description">                            </div>
+                        <div class="form-group">
+                            <label for="incomeAmount">Income Amount</label>
+                            <input type="number" class="form-control" name="income_amount" placeholder="Enter income source amount">
+                        </div>
+                        <div class="form-group">
+                            <label for="incomeSource">Income Source</label>
+                            <select id="form-control" name="category_id" required>
+                                <?php foreach ($categories as $category): ?>
+                                    <option value="<?php echo htmlspecialchars($category['category_id']); ?>">
+                                        <?php echo htmlspecialchars($category['category_name']); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button submit" class="btn btn-success">Save</button>
                     </div>
                 </div>
             </div>
