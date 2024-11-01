@@ -1,5 +1,5 @@
 <?php
-include '../db_connection.php';
+include 'db_connection.php';
 
 $username = $_POST['username'];
 $email = $_POST['email'];
@@ -13,7 +13,7 @@ if ($query->execute() === TRUE) {
 } else {
     echo "Error: {$query->error}";
 }
-// Add query to check for duplicate usernames and emails
+// Add query to check for duplicate usernames and emails - Note: incomplete code
 $query = $conn->prepare("SELECT * FROM users WHERE username = ? OR email = ?");
 $query->bind_param("ss", $username, $email);
 $query->execute();
