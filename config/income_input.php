@@ -18,12 +18,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_id = isset($_SESSION['User_id']) ? $_SESSION['User_id'] : null;
 
     if ($income_date && $income_description && $income_amount && $category_id && $user_id) {
-        // Prepare and bind
         $sql = "INSERT INTO Income (User_id, income_date, income_description, income_amount, category_id) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("issdi", $user_id, $income_date, $income_description, $income_amount, $category_id);
 
-        // Execute the statement
         if ($stmt->execute()) {
             header("Location: ../income.php");
         } else {

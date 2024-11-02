@@ -119,9 +119,9 @@ $stmt->close();
             </div>
 
             <!-- Quick Add Section -->
-            <div class="quick-add">
-                <button type="button" class="btn btn-income" data-bs-toggle="modal" data-bs-target="#newIncomeModal">⬆️ New Income</button>
-                <button type="button" class="btn btn-expense" data-bs-toggle="modal" data-bs-target="#newExpenseModal">💲 New Expense</button>
+            <div class="quick_add">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newIncomeModal">⬆️ New Income</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newExpenseModal">💲 New Expense</button>
             </div>
 
             <!-- Recent Transactions -->
@@ -134,8 +134,21 @@ $stmt->close();
         </div>
     </div>
 
+    <!-- PHP for fetching income categories -->
+    <?php
+    $sql = "SELECT category_id, category_name FROM Categories WHERE User_id = $user_id AND category_type = 'Income';";
+    $result = mysqli_query($conn, $sql);
+    if (!$result) {
+        die("Query failed: " . mysqli_error($conn));
+    }
+    $categories = [];
+    while ($row = $result->fetch_assoc()) {
+        $categories[] = $row; 
+    }
+    ?>
+
     <!-- New Income Modal -->
-    <form>
+    <form action="config/income_input.php" method="POST">
         <div class="modal fade" id="newIncomeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -143,33 +156,87 @@ $stmt->close();
                         <h5 class="modal-title" id="exampleModalLabel">Input Income Details</h5>
                     </div>
                     <div class="modal-body">
-                            <div class="form-group">
-                                <label for="Date">Date</label>
-                                <input type="date" class="form-control" id="incomeSourceDate" placeholder="Enter date">
-                            </div>
-                            <div class="form-group">
-                                <label for="incomeDescription">Income Description</label>
-                                <input type="text" class="form-control" id="incomeSourceDescription" placeholder="Enter income source description">
-                            </div>
-                            <div class="form-group">
-                                <label for="incomeAmount">Income Amount</label>
-                                <input type="number" class="form-control" id="incomeSourceAmount" placeholder="Enter income source amount">
-                            </div>
-                            <div class="form-group">
-                                <label for="incomeSource">Income Source</label>
-                                <select class="form-control" id="incomeSourceCategory">
-                                    <!-- Placeholders only, not yet connected with database -->
-                                    <option value="Salary">Salary</option>
-                                    <option value="Business">Business</option>
-                                    <option value="Investment">Investment</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                        </form>
+                        <div class="form-group">
+                            <label for="Date">Date</label>
+                            <input type="date" class="form-control" name="income_date" placeholder="Enter date">
+                        </div>
+                        <div class="form-group">
+                            <label for="incomeDescription">Income Description</label>
+                            <input type="text" class="form-control" name="income_description" placeholder="Enter income source description">                            </div>
+                        <div class="form-group">
+                            <label for="incomeAmount">Income Amount</label>
+                            <input type="number" class="form-control" name="income_amount" placeholder="Enter income source amount">
+                        </div>
+                        <div class="form-group">
+                            <label for="incomeSource">Income Source</label>
+                            <select id="form-control" name="category_id" required>
+                                <?php foreach ($categories as $category): ?>
+                                    <option value="<?php echo htmlspecialchars($category['category_id']); ?>">
+                                        <?php echo htmlspecialchars($category['category_name']); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button submit" class="btn btn-success">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- PHP for fetching expense categories -->
+
+    <?php
+    // Fetch categories where User_id = ? and category_type = 'Expense'
+    $query = "SELECT category_id, category_name FROM Categories WHERE User_id = $user_id and category_type = 'Expense';";
+    $result = mysqli_query($conn, $query);
+    if (!$result) {
+        die("Query failed: " . mysqli_error($conn));
+    }
+    $categories = [];
+    while ($row = $result->fetch_assoc()) {
+        $categories[] = $row;
+    }
+    ?>
+
+    <!-- New Expense Modal -->
+    <form action="config/expense_input.php" method="POST">
+        <div class="modal fade" id="newExpenseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">New Expense</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="expenseDate">Date</label>
+                            <input type="date" class="form-control" id="expenseDate" name="expense_date" placeholder="Enter expense date">
+                        </div>
+                        <div class="form-group">
+                            <label for="expenseDescription">Description</label>
+                            <input type="text" class="form-control" id="expenseDescription" name="expense_description" placeholder="Enter expense description">
+                        </div>
+                        <div class="form-group">
+                            <label for="expenseAmount">Expense</label>
+                            <input type="number" class="form-control" id="expenseAmount" name="expense_amount" placeholder="Enter expense amount">
+                        </div>
+                        <div class="form-group">
+                            <label for="expenseCategory">Category</label>
+                            <select class="form-control" name="category_id" id="expenseCategory" required>
+                                <?php foreach ($categories as $category):  ?>
+                                    <option value="<?php echo htmlspecialchars($category['category_id']); ?>">
+                                        <?php echo htmlspecialchars($category['category_name']); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success">Save changes</button>
+                        <button type="button submit" class="btn btn-primary">Add</button>
                     </div>
                 </div>
             </div>
