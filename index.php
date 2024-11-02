@@ -1,6 +1,11 @@
+
 <?php
+<<<<<<< Updated upstream
 include 'db_connection.php';
 session_start();
+=======
+# include 'db_connection.php';
+>>>>>>> Stashed changes
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
@@ -22,10 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "No user found with that username.";
     }
 
-    $conn->close();
+#   $conn->close();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="login-text">
-        <h1> Finance Tracker</h1>
+        <h1>Finance Tracker</h1>
     </div>
     <div class="auth-container">
         <h2>Login</h2>
