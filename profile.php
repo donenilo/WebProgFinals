@@ -58,7 +58,7 @@ if(!$result) {
         <div class="profile">
             <h2>Profile</h2>
             <div class="profile-info">
-                <p><strong>Username:</strong> <?php echo $username; ?></p>
+                <p><strong>Username:</strong> <?php echo $username; ?></p> <br>
                 <p><strong>Email:</strong> <?php echo $email; ?></p>
             </div>
         <h3>Update Password</h3>

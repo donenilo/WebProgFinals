@@ -41,7 +41,7 @@ while ($row = $result->fetch_assoc()) {
                 <li><a href="income.php">✏️ Tracking</a></li>
                 <li><a href="income.php">📥 Income</a></li>
                 <li class="active"><a href="expense.php">💸 Expense</a></li>
-                <li><a href="goals.php">🎯 Goals</a></li> 
+                <li><a href="savings.php">🎯 Savings</a></li> 
             </ul>
             <div class="sidebar-footer">
                 <a href="profile.php">Profile</a>
