@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2024 at 08:00 PM
+-- Generation Time: Nov 02, 2024 at 11:12 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `finance_tracker`
 --
-CREATE DATABASE IF NOT EXISTS `finance_tracker` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `finance_tracker`;
 
 -- --------------------------------------------------------
 
@@ -46,7 +44,9 @@ INSERT INTO `categories` (`category_id`, `User_id`, `category_name`, `category_t
 (3, 1, 'Grocery', 'Expense'),
 (4, 1, 'Bills', 'Expense'),
 (5, 1, 'Dream House', 'Savings'),
-(6, 1, 'Emergency Funds', 'Savings');
+(6, 1, 'Emergency Funds', 'Savings'),
+(7, 1, 'QA', 'Income'),
+(10, 1, 'Personal', 'Expense');
 
 -- --------------------------------------------------------
 
@@ -69,7 +69,9 @@ CREATE TABLE `expense` (
 
 INSERT INTO `expense` (`expense_id`, `User_id`, `expense_date`, `expense_description`, `expense_amount`, `category_id`) VALUES
 (1, 1, '2024-11-01', 'Grocery - Nov', 5500.00, 3),
-(2, 1, '2024-11-01', 'Bills - Nov', 4000.00, 4);
+(2, 1, '2024-11-01', 'Bills - Nov', 4000.00, 4),
+(3, 1, '2024-11-02', 'Cat Food', 2000.00, 3),
+(4, 1, '2024-11-02', 'Baking', 1200.00, 3);
 
 -- --------------------------------------------------------
 
@@ -92,7 +94,8 @@ CREATE TABLE `income` (
 
 INSERT INTO `income` (`income_id`, `User_id`, `income_date`, `income_description`, `income_amount`, `category_id`) VALUES
 (1, 1, '2024-11-01', 'Freelancing - Nov', 32000.00, 1),
-(2, 1, '2024-11-01', 'House Cleaning', 19500.00, 2);
+(2, 1, '2024-11-01', 'House Cleaning', 19500.00, 2),
+(3, 1, '2024-11-02', 'PC Labor', 32000.00, 1);
 
 -- --------------------------------------------------------
 
@@ -120,6 +123,20 @@ INSERT INTO `savings` (`savings_id`, `User_id`, `savings_date`, `savings_descrip
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `savingsgoals`
+--
+
+CREATE TABLE `savingsgoals` (
+  `goal_id` int(11) NOT NULL,
+  `User_id` int(11) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `goal_amount` decimal(10,2) NOT NULL,
+  `target_date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -135,7 +152,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`User_id`, `Username`, `Email`, `Password_Hash`) VALUES
-(1, 't', 't@gmail.com', '$2y$10$yXLtNijJCCbpV9PxFxzi1uNc3NSvONue9ZEO9nbhK59P2CtTpxi/2');
+(1, 't', 't@gmail.com', '$2y$10$yXLtNijJCCbpV9PxFxzi1uNc3NSvONue9ZEO9nbhK59P2CtTpxi/2'),
+(2, 'tt', 'tt@gmail.com', '$2y$10$eTAIvKh1UajOS6nIERSreOipQ7KKS8KsMEIl5H/ruUXkR2lFLEIQS');
 
 --
 -- Indexes for dumped tables
@@ -173,6 +191,14 @@ ALTER TABLE `savings`
   ADD KEY `category_id` (`category_id`);
 
 --
+-- Indexes for table `savingsgoals`
+--
+ALTER TABLE `savingsgoals`
+  ADD PRIMARY KEY (`goal_id`),
+  ADD KEY `User_id` (`User_id`),
+  ADD KEY `category_id` (`category_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -187,19 +213,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `expense`
 --
 ALTER TABLE `expense`
-  MODIFY `expense_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `expense_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `income`
 --
 ALTER TABLE `income`
-  MODIFY `income_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `income_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `savings`
@@ -208,10 +234,16 @@ ALTER TABLE `savings`
   MODIFY `savings_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `savingsgoals`
+--
+ALTER TABLE `savingsgoals`
+  MODIFY `goal_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `User_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `User_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -243,6 +275,13 @@ ALTER TABLE `income`
 ALTER TABLE `savings`
   ADD CONSTRAINT `savings_ibfk_1` FOREIGN KEY (`User_id`) REFERENCES `users` (`User_id`),
   ADD CONSTRAINT `savings_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`);
+
+--
+-- Constraints for table `savingsgoals`
+--
+ALTER TABLE `savingsgoals`
+  ADD CONSTRAINT `savingsgoals_ibfk_1` FOREIGN KEY (`User_id`) REFERENCES `users` (`User_id`),
+  ADD CONSTRAINT `savingsgoals_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -134,7 +134,7 @@ while ($row = $result->fetch_assoc()) {
     </form>
 
     <!-- New Expense Category Modal -->
-    <form>
+    <form action="config/expense_category.php" method="POST">
         <div class="modal fade" id="newExpenseCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -144,12 +144,12 @@ while ($row = $result->fetch_assoc()) {
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="categoryName">Category Name</label>
-                            <input type="text" class="form-control" id="categoryName" placeholder="Enter category name">
+                            <input type="text" name="expense_category" class="form-control" id="categoryName" placeholder="Enter category name">
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onclick="addCategory()">Add</button>
+                        <button type="button submit" class="btn btn-primary">Add</button>
                     </div>
                 </div>
             </div>

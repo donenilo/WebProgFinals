@@ -11,7 +11,6 @@ if (!isset($_SESSION['User_id'])) {
 $user_id = $_SESSION['User_id'];
 
 // Fetch categories where User_id = ? and category_type = 'Income'
-$category_type = 'Income';
 $sql = "SELECT category_id, category_name FROM Categories WHERE User_id = $user_id AND category_type = 'Income';";
 $result = mysqli_query($conn, $sql);
 if (!$result) {
@@ -42,7 +41,7 @@ while ($row = $result->fetch_assoc()) {
                 <li><a href="income.php">✏️ Tracking</a></li>
                 <li class="active"><a href="income.php">📥 Income</a></li>
                 <li><a href="expense.php">💸 Expense</a></li>
-                <li><a href="goals.php">🎯 Goals</a></li> 
+                <li><a href="savings.php">🎯 Savings</a></li> 
             </ul>
             <div class="sidebar-footer">
                 <a href="profile.php">Profile</a>
@@ -133,19 +132,19 @@ while ($row = $result->fetch_assoc()) {
         </div>
     </form>
     <!-- New Income Source Modal -->
-    <form>
+    <form action="config/income_source.php" method="POST">
         <div class="modal fade" id="newIncomeSourceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="incomeSourceName">Income Source Name</label>
-                            <input type="text" class="form-control" id="incomeSourceName" placeholder="Enter income source name">
+                            <input type="text" name="income_source"class="form-control" id="incomeSourceName" placeholder="Enter income source name">
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success">Save changes</button>
+                        <button type="button submit" class="btn btn-success">Save changes</button>
                     </div>
                 </div>
             </div>
