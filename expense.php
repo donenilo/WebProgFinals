@@ -37,11 +37,11 @@ while ($row = $result->fetch_assoc()) {
         <nav class="sidebar">
             <h2>Finance Tracker</h2>
             <ul>
-                <li><a href="dashboard.php">📊 Dashboard</a></li>
-                <li><a href="income.php">✏️ Tracking</a></li>
-                <li><a href="income.php">📥 Income</a></li>
-                <li class="active"><a href="expense.php">💸 Expense</a></li>
-                <li><a href="savings.php">🎯 Savings</a></li> 
+            <li><a href="dashboard.php"><img src="assets/chartbar.png"> Dashboard</a></li>
+                <li><a href="income.php"><img src="assets/notepencil.png"> Tracking</a></li>
+                <li><a href="income.php"><img src="assets/creditcard-add.png"> Income</a></li>
+                <li class="active"><a href="expense.php"><img src="assets/dollar signs.png"> Expense</a></li>
+                <li><a href="savings.php"><img src="assets/savings.png"> Savings</a></li> 
             </ul>
             <div class="sidebar-footer">
                 <a href="profile.php">Profile</a>
