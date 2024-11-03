@@ -167,6 +167,63 @@ body {
   }
 
 
+/* Sidebar */
+  .sidebar {
+    width: 250px;
+    background-color: #2b4c7e; /* Dark blue color */
+    color: #ffffff;
+    padding: 20px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+  .sidebar h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+  .sidebar ul li {
+    margin: 15px 0;
+}
+
+  .sidebar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+}
+
+  .sidebar ul li a:hover {
+    color: #c9d6eb; /* Light blue hover */
+}
+
+  .sidebar ul li.active a {
+    background-color: #1f3a5e; /* Highlight active menu item */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+  .sidebar-footer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    border-top: 1px solid #ffffff;
+}
+
+  .sidebar-footer a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
   /* Expense */
 
   .main-content {
