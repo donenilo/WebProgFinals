@@ -51,7 +51,17 @@ while ($row = $result->fetch_assoc()) {
                 <a href="logout.php">Logout</a>
             </div>
         </nav>
-
+        <style>
+        .table th{
+      
+          }
+        .table-body{
+        display: flex;
+        flex-direction: row;
+         padding: 100px;
+    
+    }
+</style>
         <!-- Main Content -->
         <div class="main-content">
             <h1>Expense</h1>
@@ -88,6 +98,29 @@ while ($row = $result->fetch_assoc()) {
             </div>
             <div class="expense_category_display">
 
+            <div class="category_table_display">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Expense Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $query = "SELECT CONCAT(C.category_type, ': ', SUM(E.expense_amount)) AS "Expense Category" FROM Expense AS E JOIN Categories AS C ON E.category_id = C.category_id WHERE C.category_type = 'Expense' AND E.User_id = $user_id GROUP BY E.category_id;";
+                        $result = mysqli_query($conn, $query);
+                        if (!$result) {
+                            die("Query failed: " . mysqli_error($conn));
+                        }
+                        // output data of each row
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . $row["Expense Category"] . "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
             </div>
             <div class="quick_add">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newExpenseModal"> New Expense </button>
