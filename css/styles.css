@@ -437,3 +437,8 @@ margin-right: 5px;
 .goals{
   margin-top: 20px;
 }
+
+.dbcf {
+    display: flex;
+    flex-direction: row;
+}
