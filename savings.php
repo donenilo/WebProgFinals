@@ -59,7 +59,7 @@ while ($row = $result->fetch_assoc()) {
         <div class="main-content">
             <h1>Savings</h1>
             <h4>Recent Transactions</h4>
-            <div class="savings">
+            <div class="tsavings">
                 <!-- Savings Table -->
                 <table class="table">
                     <thead>
@@ -92,7 +92,7 @@ while ($row = $result->fetch_assoc()) {
                 </table>
             </div>
             <h4>Goals</h4>
-            <div class="goals">
+            <div class="tgoals">
                 <table class="table">
                     <thead>
                         <tr>
@@ -129,7 +129,7 @@ while ($row = $result->fetch_assoc()) {
             </div>
         </div>
     </div>
-    <!-- <-- New Savings Modal -->
+    <!-- New Savings Modal -->
     <form action="config/savings_input.php" method="POST">
         <div class="modal fade" id="newSavingsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -171,8 +171,8 @@ while ($row = $result->fetch_assoc()) {
         </div>
     </form>
 
-    <!-- New Goal Modal TO BE UPDATED --> 
-    <!-- <form action="config/goal_input.php" method="POST">
+    <!-- New Goal Modal --> 
+    <form action="config/savings_goal.php" method="POST">
         <div class="modal fade" id="newGoalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -182,6 +182,10 @@ while ($row = $result->fetch_assoc()) {
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
+                            <label for="category_id" class="form-label">Category</label>
+                            <input type="text" class="form-control" id="category_name" name="category_name" placeholder="Enter Goal Name" required>
+                        </div>
+                        <div class="mb-3">
                             <label for="goal_amount" class="form-label">Goal Amount</label>
                             <input type="number" class="form-control" id="goal_amount" name="goal_amount" required>
                         </div>
@@ -189,11 +193,15 @@ while ($row = $result->fetch_assoc()) {
                             <label for="target_date" class="form-label">Target Date</label>
                             <input type="date" class="form-control" id="target_date" name="target_date" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="category_id" class="form-label">Category</label>
-                         -->
-
-                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button submit" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>                
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

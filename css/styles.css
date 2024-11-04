@@ -439,9 +439,14 @@ margin-right: 5px;
   outline: none;
   border-color: #123456;
 }
-.savings{
+.tsavings{
   margin-top: 20px;
 }
-.goals{
+.tgoals{
   margin-top: 20px;
+}
+
+.dbcf {
+    display: flex;
+    flex-direction: row;
 }
