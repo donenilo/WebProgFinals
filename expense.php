@@ -89,12 +89,12 @@ while ($row = $result->fetch_assoc()) {
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Income Source</th>
+                            <th scope="col">Expense Category</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        $query = "SELECT CONCAT(C.category_type, ': ', SUM(I.income_amount)) AS "Income Source" FROM Income AS I JOIN Categories AS C ON I.category_id = C.category_id WHERE C.category_type = 'Income' AND I.User_id = $user_id GROUP BY I.category_id;"
+                        $query = "SELECT CONCAT(C.category_type, ': ', SUM(E.expense_amount)) AS "Expense Category" FROM Expense AS E JOIN Categories AS C ON E.category_id = C.category_id WHERE C.category_type = 'Expense' AND E.User_id = $user_id GROUP BY E.category_id;";
                         $result = mysqli_query($conn, $query);
                         if (!$result) {
                             die("Query failed: " . mysqli_error($conn));
@@ -102,7 +102,7 @@ while ($row = $result->fetch_assoc()) {
                         // output data of each row
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>";
-                            echo "<td>" . $row["Income Source"] . "</td>";
+                            echo "<td>" . $row["Expense Category"] . "</td>";
                             echo "</tr>";
                         }
                         ?>
