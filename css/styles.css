@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Inria Sans", sans-serif;
   background-color: #f4f4f4;
 }
 
@@ -226,6 +226,7 @@ body {
 
 /* Sidebar */
 .sidebar {
+  font-family: "Inria Serif";
   width: 250px;
   background-color: #1C3F74; /* Dark blue color */
   color: #ffffff;
@@ -297,8 +298,7 @@ margin-right: 17px;
 margin-right: 5px;
 }
 
-
-/* Expense */
+/* Income and Expense */
 
 .main-content {
   flex-grow: 1;
@@ -306,9 +306,16 @@ margin-right: 5px;
 }
 
 .main-content h1 {
+  width: 369px;
+  height: 119px;
+  flex-shrink: 0;
+  fill: #C36629;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  font-family: "Inria Serif";
   font-size: 64px;
   color: #123456;
   margin-bottom: 20px;
+  
 }
 
 .expense_table_display .table {
