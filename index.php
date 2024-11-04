@@ -43,8 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="login-text">
         <h1>Finance Tracker</h1>
     </div>
-    <div class = "header-wrapper">
-    </div>
     <div class="auth-container">
         <h2>Login</h2>
         <form action="index.php" method="POST">

@@ -257,7 +257,6 @@ body {
 
 .sidebar h2 {
   font-size: 50px;
-  font-weight: 0;
   margin-bottom: -200px;
   text-align: center;
 }
@@ -276,7 +275,10 @@ body {
   text-decoration: none;
   font-size: 26px;
   display: flex;
-  align-items: center;
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
   
 }
 
@@ -289,7 +291,13 @@ body {
   padding: 10px;
   border-radius: 5px;
 }
+.sidebar-line {
+  margin-top: 200px;
+  width: 200px;
+  height: 1.5px;
+  background: #969191;
 
+}
 .sidebar-footer {
   display: flex;
   justify-content: space-between;

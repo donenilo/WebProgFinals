@@ -39,6 +39,7 @@ while ($row = $result->fetch_assoc()) {
     <div class="container">
         <nav class="sidebar">
             <h2>Finance Tracker</h2>
+            <div class = "sidebar-line"></div>
             <ul>
                 <li><a href="dashboard.php"><img src="assets/chartbar.png"> Dashboard</a></li>
                 <li><a href="income.php"><img src="assets/notepencil.png"> Tracking</a></li>
@@ -112,7 +113,7 @@ while ($row = $result->fetch_assoc()) {
             </div>
 
             </div>
-            <div class="quick_add">>
+            <div class="quick_add">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newIncomeModal"> New Income </button>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newIncomeSourceModal"> New Income Source </button>
             </div>
