@@ -48,7 +48,17 @@ while ($row = $result->fetch_assoc()) {
                 <a href="logout.php">Logout</a>
             </div>
         </nav>
-
+        <style>
+        .table th{
+      
+          }
+        .table-body{
+        display: flex;
+        flex-direction: row;
+         padding: 100px;
+    
+    }
+</style>
         <!-- Main Content -->
         <div class="main-content">
             <h1>Expense</h1>
