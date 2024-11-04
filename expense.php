@@ -104,7 +104,7 @@ while ($row = $result->fetch_assoc()) {
                     </thead>
                     <tbody>
                         <?php
-                        $query = "SELECT CONCAT(C.category_type, ': ', SUM(E.expense_amount)) AS "Expense Category" FROM Expense AS E JOIN Categories AS C ON E.category_id = C.category_id WHERE C.category_type = 'Expense' AND E.User_id = $user_id GROUP BY E.category_id;";
+                        $query = "SELECT CONCAT(C.category_type, ': ', SUM(E.expense_amount)) AS `Expense Category` FROM Expense AS E JOIN Categories AS C ON E.category_id = C.category_id WHERE C.category_type = 'Expense' AND E.User_id = $user_id GROUP BY E.category_id;";
                         $result = mysqli_query($conn, $query);
                         if (!$result) {
                             die("Query failed: " . mysqli_error($conn));
