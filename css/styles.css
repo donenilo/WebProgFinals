@@ -1,3 +1,8 @@
+.logsign {
+  background-image: url("../assets/bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 body {
   margin: 0;
   font-family: "Inria Sans", sans-serif;
@@ -7,12 +12,15 @@ body {
 /* Login/Signup Page */
 
 .login-text {
+  font-family: "Inria Serif";
+  color: white;
   width: 400px;
   margin: 100px auto;
   padding: 20px;
-  background-color: #31b0d5;
+  background-color: #1C3F74;
   border-radius: 10px;
   text-align: center;
+  
 }
 
 .auth-container {
@@ -24,6 +32,9 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
+.auth-container h2 {
+  font-family: "Inria Serif";
+}
 
 .auth-container input {
   width: 90%;
@@ -34,22 +45,22 @@ body {
 }
 
 .auth-container button {
+  font-size: 1.2rem;
   width: 95%;
   padding: 10px;
-  background-color: #5bc0de;
+  background-color: #F1BD6B;
   border: none;
   border-radius: 5px;
   color: white;
-  font-weight: bold;
   cursor: pointer;
 }
 
 .auth-container button:hover {
-  background-color: #31b0d5;
+  background-color: #fabf61;
 }
 
 .auth-container a {
-  color: #5bc0de;
+  color: #F1BD6B;
   text-decoration: none;
 }
 

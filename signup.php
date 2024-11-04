@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
     <script src="scripts/scripts.js"></script>
 </head>
-<body>
+<body class ="logsign">
     <div class="auth-container">
         <h2>Signup</h2>
         <form action="config/signup_handler.php" method="POST">

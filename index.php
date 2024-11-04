@@ -39,15 +39,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
     <script src="js/scripts.js"></script>
 </head>
-<body>
+<body class = "logsign">
     <div class="login-text">
-        <h1> Finance Tracker</h1>
+        <h1>Finance Tracker</h1>
     </div>
     <div class="auth-container">
         <h2>Login</h2>
         <form action="index.php" method="POST">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
+            <input type="text" name="username" placeholder="Enter your username..." required>
+            <input type="password" name="password" placeholder="Enter your password..." required>
             <button type="submit">Login</button>
         </form>
         <p>Don't have an account? <a href="signup.php">Sign up</a></p>
