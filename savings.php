@@ -58,10 +58,7 @@ while ($row = $result->fetch_assoc()) {
         <!-- Main Content -->
         <div class="main-content">
             <h1>Savings</h1>
-            <div class="quick_add">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newSavingsModal"> New Savings </button>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newGoalModal"> New Goal </button>
-            </div>
+            <h4>Recent Transactions</h4>
             <div class="savings">
                 <!-- Savings Table -->
                 <table class="table">
@@ -94,6 +91,7 @@ while ($row = $result->fetch_assoc()) {
                     </tbody>
                 </table>
             </div>
+            <h4>Goals</h4>
             <div class="goals">
                 <table class="table">
                     <thead>
@@ -124,6 +122,10 @@ while ($row = $result->fetch_assoc()) {
                         ?>
                     </tbody>
                 </table>
+            </div>
+            <div class="quick_add">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newSavingsModal"> New Savings </button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newGoalModal"> New Goal </button>
             </div>
         </div>
     </div>
