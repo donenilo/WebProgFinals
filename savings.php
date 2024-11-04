@@ -58,7 +58,7 @@ while ($row = $result->fetch_assoc()) {
         <!-- Main Content -->
         <div class="main-content">
             <h1>Savings</h1>
-            <div class="quick-add">
+            <div class="quick_add">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newSavingsModal"> New Savings </button>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newGoalModal"> New Goal </button>
             </div>
