@@ -58,9 +58,12 @@ while ($row = $result->fetch_assoc()) {
         <!-- Main Content -->
         <div class="main-content">
             <h1>Savings</h1>
-
-            <div class="savings">
+            <div class="quick-add">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newSavingsModal"> New Savings </button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newGoalModal"> New Goal </button>
+            </div>
+            <div class="savings">
+                <!-- Savings Table -->
                 <table class="table">
                     <thead>
                         <tr>
@@ -91,11 +94,104 @@ while ($row = $result->fetch_assoc()) {
                     </tbody>
                 </table>
             </div>
-            <div>
-
+            <div class="goals">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Goal</th>
+                            <th scope="col">Target Amount</th>
+                            <th scope="col">Saved Amount</th>
+                            <th scope="col">Target Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        // insert query to get the goal data
+                        $query = "SELECT C.category_name AS 'Goal', SG.goal_amount AS 'Target Amount', COALESCE(SUM(S.savings_amount), 0) AS 'Saved Amount', SG.target_date AS 'Target Date'FROM Categories AS C JOIN SavingsGoals AS SG ON C.category_id = SG.category_id LEFT JOIN Savings AS S ON C.category_id = S.category_id WHERE C.category_type = 'Savings' GROUP BY C.category_id, SG.goal_amount, SG.target_date;";
+                        $result = mysqli_query($conn, $query);
+                        if (!$result) {
+                            die("Query failed: " . mysqli_error($conn));
+                        }
+                        // output data of each row
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . $row["Goal"] . "</td>";
+                            echo "<td>" . $row["Target Amount"] . "</td>";
+                            echo "<td>" . $row["Saved Amount"] . "</td>";
+                            echo "<td>" . $row["Target Date"] . "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+    <!-- <-- New Savings Modal -->
+    <form action="config/savings_input.php" method="POST">
+        <div class="modal fade" id="newSavingsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New Savings</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="savings_date" class="form-label">Date</label>
+                            <input type="date" class="form-control" id="savings_date" name="savings_date" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="savings_description" class="form-label">Description</label>
+                            <input type="text" class="form-control" id="savings_description" name="savings_description" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="savings_amount" class="form-label">Amount</label>
+                            <input type="number" class="form-control" id="savings_amount" name="savings_amount" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="category_id" class="form-label">Category</label>
+                            <select class="form-select" id="category_id" name="category_id" required>
+                                <?php foreach ($categories as $category): ?>
+                                    <option value="<?php echo htmlspecialchars($category['category_id']); ?>">
+                                        <?php echo htmlspecialchars($category['category_name']); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button submit" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- New Goal Modal TO BE UPDATED --> 
+    <!-- <form action="config/goal_input.php" method="POST">
+        <div class="modal fade" id="newGoalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New Goal</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="goal_amount" class="form-label">Goal Amount</label>
+                            <input type="number" class="form-control" id="goal_amount" name="goal_amount" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="target_date" class="form-label">Target Date</label>
+                            <input type="date" class="form-control" id="target_date" name="target_date" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="category_id" class="form-label">Category</label>
+                         -->
+
+                        
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
