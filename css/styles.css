@@ -1,6 +1,5 @@
 .logsign {
   background-image: url("../assets/bg.jpg");
-  background-size: cover;
   background-repeat: no-repeat;
 }
 body {
@@ -20,22 +19,18 @@ body {
   background-color: #1C3F74;
   border-radius: 10px;
   text-align: center;
+  filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.25));
   
 }
-
 .auth-container {
   width: 400px;
-  margin: 100px auto;
+  margin: 10px auto;
   padding: 20px;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
-.auth-container h2 {
-  font-family: "Inria Serif";
-}
-
 .auth-container input {
   width: 90%;
   padding: 10px;
@@ -45,25 +40,37 @@ body {
 }
 
 .auth-container button {
+  font-family: "Inria Serif";
   font-size: 1.2rem;
   width: 95%;
   padding: 10px;
   background-color: #F1BD6B;
   border: none;
-  border-radius: 5px;
-  color: white;
+  border-radius: 30px;
+  color: black;
   cursor: pointer;
 }
 
 .auth-container button:hover {
   background-color: #fabf61;
 }
+.auth-container h2 {
+  font-family: "Inria Serif";
+}
+.horizontal-line {
+  margin: 10px auto;
+  width: 330px;
+  height: 1.5px;
+  background: #969191;
+}
 
 .auth-container a {
   color: #F1BD6B;
   text-decoration: none;
 }
-
+.signup {
+  margin: 150px auto;
+}
 /* Dashboard */
 
 .container {

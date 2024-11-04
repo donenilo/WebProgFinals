@@ -43,6 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="login-text">
         <h1>Finance Tracker</h1>
     </div>
+    <div class = "header-wrapper">
+    </div>
     <div class="auth-container">
         <h2>Login</h2>
         <form action="index.php" method="POST">
@@ -50,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="password" name="password" placeholder="Enter your password..." required>
             <button type="submit">Login</button>
         </form>
+        <div class = "horizontal-line"></div>
         <p>Don't have an account? <a href="signup.php">Sign up</a></p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
