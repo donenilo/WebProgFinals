@@ -75,8 +75,11 @@ body {
 .signup {
   margin: 150px auto;
 }
-
 /* Dashboard */
+
+.hdashboard{
+  background-color: #1C3F74;
+}
 .container {
   display: flex;
   height: 100vh;
@@ -320,7 +323,87 @@ body {
   background-color: #c9302c;
 }
 
+/* Sidebar */
+.sidebar {
+  font-family: "Inria Serif";
+  width: 250px;
+  background-color: #1C3F74; /* Dark blue color */
+  color: #ffffff;
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar h2 {
+  font-size: 50px;
+  margin-bottom: -200px;
+  text-align: center;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 26px;
+  display: flex;
+  
+}
+
+.sidebar ul li a:hover {
+  color: #c9d6eb; /* Light blue hover */
+}
+
+.sidebar ul li.active a {
+  background-color: #1f3a5e; /* Highlight active menu item */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.sidebar-footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid #ffffff;
+}
+
+.sidebar-footer a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 26px;
+}
+.img_creditcard {
+width: 40px;
+margin-right: 20px;
+}
+
+.img_dollarsigns {
+margin-right: 17px;
+}
+
+.img_savings {
+margin-right: 5px;
+}
+
 /* Income and Expense */
+.income_table_display th {
+  background: #EEB691;
+}
+.main-content {
+  flex-grow: 1;
+  padding: 10px;
+}
+
 .main-content h1 {
   width: 369px;
   height: 119px;
@@ -335,8 +418,8 @@ body {
   border-radius: 25px;
 }
 
-.hdashboard {
-  background-color: #1C3F74;
+.hincome{
+  background-color: #C36629;
 }
 
 .hincome {
@@ -352,6 +435,10 @@ body {
 }
 
 .expense_table_display {
+.hexpense{
+  background-color: #8E1717;
+}
+.expense_table_display th {
   width: 100%;
   background-color: #ffffff;
   border-radius: 10px;
@@ -400,8 +487,25 @@ body {
   position: relative;
 }
 
+
 .quick_add button:hover {
   background-color: #d58f00;
+}
+.edit-btn button {
+  margin-bottom: 10px;
+  font-size: 16px;
+  padding: 10px 10px;
+  border-radius: 20px;
+  color: #000000;
+  background-color: #f0a500;
+  border-color: black;
+  position: relative;
+}
+.edit-btn button:hover {
+  background-color: #d58f00;
+}
+.hsavings{
+  background-color: #2C4F1C;
 }
 
 .quick_add-expense button {
