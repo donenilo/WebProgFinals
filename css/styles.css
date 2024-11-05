@@ -120,11 +120,11 @@ body {
 }
 
 .sidebar ul li a:hover {
-  color: #c9d6eb; /* Light blue hover */
+  color: #c9d6eb; 
 }
 
 .sidebar ul li.active a {
-  background-color: #1f3a5e; /* Highlight active menu item */
+  background-color: #1f3a5e; 
   padding: 10px;
   border-radius: 5px;
 }
@@ -428,7 +428,7 @@ margin-right: 5px;
 
 .hexpense{
   background-color: #8E1717;}
-{}
+
 .table-expense td{
   background-color: #CD6D6D;
   border-bottom-width: 10px;
@@ -577,6 +577,10 @@ margin-right: 5px;
   margin-top: 20px;
 }
 
+.t-d{
+  width: 300px;
+}
+
 
 .categories-section {
   background-color: #f1f1f1;
@@ -633,4 +637,12 @@ margin-right: 5px;
 
 .img_savings {
   margin-right: 5px;
+}
+
+.transaction-table {
+    width: 20%;               /* Full width or a set width */
+    max-height: 200px;         /* Set the height you want */
+    overflow-y: auto;          /* Enable vertical scrolling */
+    overflow-x: hidden;        /* Prevent horizontal scrolling (optional) */
+    border: 1px solid #ddd;    /* Optional border for styling */
 }
