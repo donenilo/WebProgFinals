@@ -392,7 +392,7 @@ margin-right: 5px;
   background-color: #f0a500;
   border-color: black;
   position: relative;
-  left: 740px;
+  
 }
 
 .quick_add button:hover {
@@ -502,5 +502,16 @@ margin-right: 5px;
 
 .img_rectangle35{
   width: 20px;
+}
+.quick_add-expense button {
+  margin-bottom: 10px;
+  font-size: 16px;
+  padding: 10px 10px;
+  border-radius: 20px;
+  color: #000000;
+  background-color: #f0a500;
+  border-color: black;
+  position: relative;
+  left: 740px;
 }
 

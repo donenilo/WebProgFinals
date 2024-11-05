@@ -123,7 +123,7 @@ while ($row = $result->fetch_assoc()) {
                     </tbody>
                 </table>
             </div>
-            <div class="quick_add">
+            <div class="quick_add-expense">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newExpenseModal"> New Expense </button>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newExpenseCategoryModal"> New Expense Category </button>
             </div>
