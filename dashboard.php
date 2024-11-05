@@ -60,7 +60,7 @@ $stmt->close();
 
         <!-- Main Content -->
         <div class="main-content">
-            <h1>Dashboard</h1>
+            <h1 class="hdashboard">Dashboard</h1>
 
             <!-- Balance Cards -->
             <div class="card-container">

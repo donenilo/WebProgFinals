@@ -61,10 +61,11 @@ while ($row = $result->fetch_assoc()) {
          padding: 100px;
     
     }
+    
 </style>
         <!-- Main Content -->
         <div class="main-content">
-            <h1>Expense</h1>
+            <h1 class="hexpense">Expense</h1>
             <div class="expense_table_display">
                 <table class="table">
                     <thead>

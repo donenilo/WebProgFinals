@@ -339,10 +339,16 @@ margin-right: 5px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   font-family: "Inria Serif";
   font-size: 64px;
-  color: #123456;
-  margin-bottom: 20px;
+  color: #ffffff;
   
 }
+.hexpense{
+  padding: 10px;
+  background-color: #8E1717;
+  text-align: center;}
+  .hdashboard{background-color: #1C3F74;}
+  .hincome{background-color: #C36629;}
+
 
 .expense_table_display .table {
   width: 100%;
@@ -488,4 +494,5 @@ margin-right: 5px;
 .category-amount {
   font-weight: bold;
 }
+
 
