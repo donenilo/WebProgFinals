@@ -386,13 +386,15 @@ margin-right: 5px;
 }
 
 .quick_add button {
-  margin-right: 10px;
+  margin-bottom: 10px;
   font-size: 16px;
-  padding: 10px 15px;
+  padding: 10px 10px;
   border-radius: 20px;
-  color: #ffffff;
+  color: #000000;
   background-color: #f0a500;
-  border: none;
+  border-color: black;
+  position: relative;
+  left: 740px;
 }
 
 .quick_add button:hover {
