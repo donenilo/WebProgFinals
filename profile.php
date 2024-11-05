@@ -42,7 +42,7 @@ if(!$result) {
     <nav class="sidebar">
         <h2>Finance Tracker</h2>
         <ul>
-            <li class="active"><a href="dashboard.php"><img src="assets/chartbar.png"> Dashboard</a></li>
+            <li><a href="dashboard.php"><img src="assets/chartbar.png"> Dashboard</a></li>
             <li><a href="income.php"><img src="assets/notepencil.png"> Tracking</a></li>
             <li><a href="income.php"><img src="assets/creditcard-add.png"> Income</a></li>
             <li><a href="expense.php"><img src="assets/dollar signs.png"> Expense</a></li>
