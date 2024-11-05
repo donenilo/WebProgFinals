@@ -450,3 +450,42 @@ margin-right: 5px;
     display: flex;
     flex-direction: row;
 }
+.categories-section {
+  background-color: #f1f1f1;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 300px;
+  margin-top: 20px;
+}
+
+.categories-header h3 {
+  background-color: #8B1E1E;
+  color: white;
+  padding: 20px;
+  margin: 0;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.categories-list {
+  margin-top: 10px;
+}
+
+.category-item {
+  background-color: #D46A6A;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 70px;
+  border-radius: 30px;
+  margin-bottom: 10px;
+}
+
+.category-name {
+  font-weight: bold;
+}
+
+.category-amount {
+  font-weight: bold;
+}
+
