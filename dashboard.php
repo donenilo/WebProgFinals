@@ -90,7 +90,8 @@ $stmt->close();
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newGoalModal">🐖 New Savings Goal</button>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newSavingsModal">🐖 Deposit Savings </button>
                 </div>
-
+            </div>
+            <div class="bottom_section">
                 <!-- Charts Section -->
                 <div class="charts">
                     <div class="dbcf">
@@ -121,12 +122,9 @@ $stmt->close();
 
                             // Bar Graph
                         </script>
-                            <canvas id="myChart" style="width:30%; max-width: 302px; height: initial; margin: 2rem;"></canvas>
-                            <canvas id="yourChart" style="width:70%; max-width: 400px; margin: 2rem;"></canvas>
+                            <canvas id="myChart"></canvas><!--style="width:30%; max-width: 302px; height: initial; margin: 2rem;"> --></canvas>
                     </div>
                 </div>
-            </div>
-            <div class="bottom_section">
                 <!-- Goals Tracking Placeholder -->
                 <div class="goals-placeholder">
                     <h3>Goals Tracking</h3>
