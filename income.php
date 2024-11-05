@@ -237,7 +237,26 @@ while ($row = $result->fetch_assoc()) {
         </div>
     </div>
 </form>                
-
+    <!-- Categories Section -->
+    <div class="income-section">
+        <div class="income-header">
+            <h3 class="income-section">Categories</h3>
+        </div>
+        <div class="income-list">
+            <?php
+                 $query = "SELECT CONCAT(C.category_name, ': ', SUM(I.income_amount)) AS 'Income Source' FROM Income AS I JOIN Categories AS C ON I.category_id = C.category_id WHERE C.category_type = 'Income' AND I.User_id = $user_id GROUP BY I.category_id;";
+                 $result = mysqli_query($conn, $query);
+                 if (!$result) {
+                     die("Query failed: " . mysqli_error($conn));
+                 }
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row["Income Source"] . "</td>";
+                echo "</tr>";
+            }
+            ?>
+        </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
