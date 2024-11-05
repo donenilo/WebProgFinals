@@ -436,14 +436,9 @@ margin-right: 5px;
 
 .expense_table_display {
 .hexpense{
-  background-color: #8E1717;
+  background-color: #8E1717;}
 }
-.expense_table_display th {
-  width: 100%;
-  background-color: #ffffff;
-  border-radius: 10px;
-  overflow: hidden;
-}
+
 .table-expense td{
   background-color: #CD6D6D;
   border-bottom-width: 10px;
