@@ -75,11 +75,11 @@ while ($row = $result->fetch_assoc()) {
                         }
                         // output data of each row
                         while ($row = $result->fetch_assoc()) {
-                            echo "<tr>";
-                            echo "<td>" . $row["expense_date"] . "</td>";
-                            echo "<td>" . $row["expense_description"] . "</td>";
-                            echo "<td>" . $row["expense_amount"] . "</td>";
-                            echo "<td>" . $row["category_name"] . "</td>";
+                            echo "<tr class='table-expense'>";
+                            echo "<td class='table-expense'>" . $row["expense_date"] . "</td>";
+                            echo "<td class='table-expense'>" . $row["expense_description"] . "</td>";
+                            echo "<td class='table-expense'>" . $row["expense_amount"] . "</td>";
+                            echo "<td class='table-expense'>" . $row["category_name"] . "</td>";
                             echo "</tr>";
                         }
                         ?>

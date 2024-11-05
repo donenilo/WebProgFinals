@@ -351,19 +351,25 @@ body {
   background-color: #2C4F1C;
 }
 
-.expense_table_display .table {
+.expense_table_display {
   width: 100%;
-  border-collapse: collapse;
   background-color: #ffffff;
   border-radius: 10px;
   overflow: hidden;
 }
+.table-expense td{
+  background-color: #CD6D6D;
+  border-bottom-width: 10px;
+  
+}
+
 
 .table th,
 .table td {
   padding: 12px 15px;
   text-align: left;
-  border-bottom: 1px solid #D9D9D9;
+  border-bottom: 1px solid #ffffff;
+  border-bottom-width: 10px;
 }
 
 .table th {
@@ -376,7 +382,7 @@ body {
 }
 
 .table tbody tr:last-of-type {
-  border-bottom: 2px solid #123456;
+  border-bottom: 2px solid #ffffff;
 }
 
 .quick_add {
