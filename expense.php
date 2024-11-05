@@ -86,13 +86,13 @@ while ($row = $result->fetch_assoc()) {
                     </tbody>
                 </table>
                 <div class = "edit-btn">
-                    <button type = "button" class="btn btn-primary" data-bs-toggle="modal">Edit</button>
+                    <button type = "button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newEditFunction">Edit</button>
                 </div>
             </div>
             <div class="expense_category_display">
             <div class="quick_add-expense">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newExpenseModal"> New Expense </button>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newExpenseCategoryModal"> New Expense Category </button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newExpenseModal"><img src="assets/rectangle42.png"> New Expense </button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newExpenseCategoryModal"><img src="assets/rectangle42.png"> New Expense Category </button>
             </div>
         </div>
     </div>
