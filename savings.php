@@ -64,10 +64,10 @@ while ($row = $result->fetch_assoc()) {
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Date</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Goal</th>
+                            <th scope="col"><img src="assets/rectangle32.png">Date</th>
+                            <th scope="col"><img src="assets/rectangle35.png">Description</th>
+                            <th scope="col"><img src="assets/rectangle39.png">Amount</th>
+                            <th scope="col"><img src="assets/goal.png">Goal</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -96,10 +96,10 @@ while ($row = $result->fetch_assoc()) {
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Goal</th>
-                            <th scope="col">Target Amount</th>
-                            <th scope="col">Saved Amount</th>
-                            <th scope="col">Target Date</th>
+                        <th scope="col"><img src="assets/goal.png">Goal</th>
+                            <th scope="col"><img src="assets/images 1.png">Target Amount</th>
+                            <th scope="col"><img src="assets/rectangle39.png">Saved Amount</th>
+                            <th scope="col"><img src="assets/rectangle32.png">Target Date</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -124,8 +124,8 @@ while ($row = $result->fetch_assoc()) {
                 </table>
             </div>
             <div class="quick_add">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newSavingsModal"> New Savings </button>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newGoalModal"> New Goal </button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newSavingsModal"><img src="assets/rectangle39.png"> New Savings </button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newGoalModal"><img src="assets/goal.png"> New Goal </button>
             </div>
         </div>
     </div>
