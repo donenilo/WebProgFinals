@@ -122,18 +122,44 @@ $stmt->close();
 
                             // Bar Graph
                         </script>
-                            <canvas id="myChart"></canvas><!--style="width:30%; max-width: 302px; height: initial; margin: 2rem;"> --></canvas>
+                            <canvas id="myChart" style="width:350px; height: initial; margin: 2rem;"></canvas>
                     </div>
                 </div>
                 <!-- Goals Tracking Placeholder -->
                 <div class="goals-placeholder">
-                    <h3>Goals Tracking</h3>
-                    <p>Goals data will be shown here...</p>
+                    <table class="table t-d">
+                        <thead>
+                            <tr>
+                                <th scope="col">Savings Goals</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $query = "SELECT C.category_name, SG.goal_amount, SG.target_date, COALESCE(SUM(S.savings_amount), 0) AS total_saved,  ROUND((COALESCE(SUM(S.savings_amount), 0) / SG.goal_amount) * 100, 2) AS percentage FROM SavingsGoals SG JOIN 
+                            Categories C ON SG.category_id = C.category_id LEFT JOIN Savings S ON SG.category_id = S.category_id WHERE C.category_type = 'Savings' AND SG.User_id = ? GROUP BY SG.category_id;";
+                            $stmt = $conn->prepare($query);
+                            if ($stmt === false) {
+                                die("Prepare failed: {$conn->error}"); 
+                            }
+                            $stmt->bind_param("i", $user_id);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+                            if (!$result) {
+                                die("Query failed: {$conn->error}");
+                            }
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . $row["category_name"] . " | " . $row["target_date"] . " | " . $row["percentage"] ."%/100%" . "</td>";
+                                echo "</tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>    
                 </div>
 
                 <!-- Recent Transactions -->
-                <div class="transactions">
-                    <table class="table">
+                <div class="transactions-dashboard">
+                    <table class="table t-d">
                         <thead>
                             <tr>
                                 <th scope="col">Recent Transactions</th>
@@ -151,13 +177,13 @@ $stmt->close();
                 
                             $stmt = $conn->prepare($query);
                             if ($stmt === false) {
-                                die("Prepare failed: " . $conn->error);
+                                die("Prepare failed: {$conn->error}");
                             }
                             $stmt->bind_param("iii", $user_id, $user_id, $user_id);
                             $stmt->execute();
                             $result = $stmt->get_result();
                             if(!$result) {
-                                die("Query failed: " . $conn->error);
+                                die("Query failed: {$conn->error}");
                             }
                 
                             while ($row = $result->fetch_assoc()) {

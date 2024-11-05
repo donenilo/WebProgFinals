@@ -120,11 +120,11 @@ body {
 }
 
 .sidebar ul li a:hover {
-  color: #c9d6eb; /* Light blue hover */
+  color: #c9d6eb; 
 }
 
 .sidebar ul li.active a {
-  background-color: #1f3a5e; /* Highlight active menu item */
+  background-color: #1f3a5e; 
   padding: 10px;
   border-radius: 5px;
 }
@@ -147,10 +147,16 @@ body {
   padding: 20px;
 }
 
+.top_section{
+  margin-bottom: 20px;
+}
+
 .bottom_section {
   display: flex;
   flex-direction: row;
   gap: 3vh;
+  margin-top: 20px;
+  padding-top: 20px;
 }
 
 .card-container {
@@ -495,8 +501,8 @@ margin-right: 5px;
 
 .quick_add-expense button {
   margin-bottom: 10px;
-  font-size: 16px;
-  padding: 10px 10px;
+  font-size: 15px;
+  padding: 10px 0px;
   border-radius: 20px;
   color: #000000;
   background-color: #f0a500;
@@ -577,6 +583,10 @@ margin-right: 5px;
   margin-top: 20px;
 }
 
+.t-d{
+  width: 300px;
+}
+
 
 .categories-section {
   background-color: #f1f1f1;
@@ -601,7 +611,7 @@ margin-right: 5px;
 
 .category-item {
   background-color: #D46A6A;
-  color: white;
+  color: rgb(5, 2, 2);
   display: flex;
   justify-content: space-between;
   padding: 70px;
@@ -633,4 +643,12 @@ margin-right: 5px;
 
 .img_savings {
   margin-right: 5px;
+}
+
+.transaction-table {
+    width: 20%;               /* Full width or a set width */
+    max-height: 200px;         /* Set the height you want */
+    overflow-y: auto;          /* Enable vertical scrolling */
+    overflow-x: hidden;        /* Prevent horizontal scrolling (optional) */
+    border: 1px solid #ddd;    /* Optional border for styling */
 }
