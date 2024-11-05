@@ -73,6 +73,9 @@ body {
 }
 /* Dashboard */
 
+.hdashboard{
+  background-color: #1C3F74;
+}
 .container {
   display: flex;
 }
@@ -275,10 +278,6 @@ body {
   text-decoration: none;
   font-size: 26px;
   display: flex;
-  .sidebar ul {
-    list-style-type: none;
-    padding: 0;
-  }
   
 }
 
@@ -291,13 +290,7 @@ body {
   padding: 10px;
   border-radius: 5px;
 }
-.sidebar-line {
-  margin-top: 200px;
-  width: 200px;
-  height: 1.5px;
-  background: #969191;
 
-}
 .sidebar-footer {
   display: flex;
   justify-content: space-between;
@@ -325,7 +318,9 @@ margin-right: 5px;
 }
 
 /* Income and Expense */
-
+.income_table_display th {
+  background: #EEB691;
+}
 .main-content {
   flex-grow: 1;
   padding: 10px;
@@ -345,13 +340,15 @@ margin-right: 5px;
   border-radius: 25px;
 }
 
-  .hdashboard{background-color: #1C3F74;}
-  .hincome{background-color: #C36629;}
-  .hexpense{background-color: #8E1717;}
-  .hsavings{background-color: #2C4F1C;}
+.hincome{
+  background-color: #C36629;
+}
 
 
-.expense_table_display .table {
+.hexpense{
+  background-color: #8E1717;
+}
+.expense_table_display th {
   width: 100%;
   border-collapse: collapse;
   background-color: #ffffff;
@@ -392,11 +389,27 @@ margin-right: 5px;
   background-color: #f0a500;
   border-color: black;
   position: relative;
-  
 }
+
 
 .quick_add button:hover {
   background-color: #d58f00;
+}
+.edit-btn button {
+  margin-bottom: 10px;
+  font-size: 16px;
+  padding: 10px 10px;
+  border-radius: 20px;
+  color: #000000;
+  background-color: #f0a500;
+  border-color: black;
+  position: relative;
+}
+.edit-btn button:hover {
+  background-color: #d58f00;
+}
+.hsavings{
+  background-color: #2C4F1C;
 }
 
 /* Modal Styles */

@@ -1,13 +1,15 @@
 <?php
+//database connection
 include 'config/db_connection.php';
 session_start();
 
+//login validation
 if (!isset($_SESSION['User_id'])) {
     echo "Please login first.";
     header('Location: index.php');
     exit();
 }
-
+//user_id declaration
 $user_id = $_SESSION['User_id'];
 
 // Fetch categories where User_id = ? and category_type = 'Income'
@@ -36,6 +38,7 @@ while ($row = $result->fetch_assoc()) {
     <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Sidebar -->
     <div class="container">
         <nav class="sidebar">
             <h2>Finance Tracker</h2>
@@ -55,6 +58,7 @@ while ($row = $result->fetch_assoc()) {
 
         <!-- Main Content -->
         <div class="main-content">
+            <!-- Income Table -->
             <h1 class="hincome">Income</h1>
             <div class="income_table_display">
             <table class="table">
@@ -69,7 +73,15 @@ while ($row = $result->fetch_assoc()) {
                 <tbody>
                     <?php 
                         // insert query to get the income data
-                        $query = "SELECT I.income_id, I.User_id, I.income_date, I.income_description, I.income_amount, C.category_name FROM Income AS I JOIN Categories AS C ON I.category_id = C.category_id WHERE I.User_id = $user_id;";
+                        $query = "SELECT 
+                        I.income_id, 
+                        I.User_id, 
+                        I.income_date, 
+                        I.income_description, 
+                        I.income_amount, 
+                        C.category_name 
+                        FROM Income AS I JOIN Categories AS C ON I.category_id = C.category_id 
+                        WHERE I.User_id = $user_id;";
                         $result = mysqli_query($conn, $query);  
                         if(!$result) {  
                             die("query failed".mysqli_error($conn));
@@ -87,6 +99,10 @@ while ($row = $result->fetch_assoc()) {
                 </tbody>
             </table>
             </div>
+            <div class = "edit-btn">
+                <button type = "button" class="btn btn-primary" data-bs-toggle="modal">Edit</button>
+            </div>
+            <!-- Income Source Table -->
             <div class="income_sources">
                 <table class="table">
                     <thead>
