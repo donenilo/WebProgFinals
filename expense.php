@@ -179,7 +179,7 @@ while ($row = $result->fetch_assoc()) {
             while ($row = $result->fetch_assoc()) {
                 echo "<div class='category-item'>";
                 echo "<span class='category-name'>" . htmlspecialchars($row["category_name"]) . " </span>";
-                echo "<span class='category-amount'> ₱" . number_format($row["total_amount"], 2) . "</span>";
+                echo "<span class='category-amount'>  ₱" . number_format($row["total_amount"], 2) . "</span>";
                 echo "</div>";
             }
             ?>
