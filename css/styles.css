@@ -257,7 +257,6 @@ body {
 
 .sidebar h2 {
   font-size: 50px;
-  font-weight: 0;
   margin-bottom: -200px;
   text-align: center;
 }
@@ -276,7 +275,10 @@ body {
   text-decoration: none;
   font-size: 26px;
   display: flex;
-  align-items: center;
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
   
 }
 
@@ -289,7 +291,13 @@ body {
   padding: 10px;
   border-radius: 5px;
 }
+.sidebar-line {
+  margin-top: 200px;
+  width: 200px;
+  height: 1.5px;
+  background: #969191;
 
+}
 .sidebar-footer {
   display: flex;
   justify-content: space-between;
@@ -320,7 +328,7 @@ margin-right: 5px;
 
 .main-content {
   flex-grow: 1;
-  padding: 20px;
+  padding: 10px;
 }
 
 .main-content h1 {
@@ -331,10 +339,19 @@ margin-right: 5px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   font-family: "Inria Serif";
   font-size: 64px;
-  color: #123456;
-  margin-bottom: 20px;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px;
+  border-radius: 25px;
   
 }
+.hexpense{
+  background-color: #8E1717;
+}
+  .hdashboard{background-color: #1C3F74;}
+  .hincome{background-color: #C36629;}
+  .hsavings{background-color: #2C4F1C;}
+
 
 .expense_table_display .table {
   width: 100%;
@@ -369,13 +386,15 @@ margin-right: 5px;
 }
 
 .quick_add button {
-  margin-right: 10px;
+  margin-bottom: 10px;
   font-size: 16px;
-  padding: 10px 15px;
+  padding: 10px 10px;
   border-radius: 20px;
-  color: #ffffff;
+  color: #000000;
   background-color: #f0a500;
-  border: none;
+  border-color: black;
+  position: relative;
+  left: 740px;
 }
 
 .quick_add button:hover {
@@ -442,3 +461,43 @@ margin-right: 5px;
     display: flex;
     flex-direction: row;
 }
+.categories-section {
+  background-color: #f1f1f1;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 300px;
+  margin-top: 20px;
+}
+
+.categories-header h3 {
+  background-color: #8B1E1E;
+  color: white;
+  padding: 20px;
+  margin: 0;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.categories-list {
+  margin-top: 10px;
+}
+
+.category-item {
+  background-color: #D46A6A;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 70px;
+  border-radius: 30px;
+  margin-bottom: 10px;
+}
+
+.category-name {
+  font-weight: bold;
+}
+
+.category-amount {
+  font-weight: bold;
+}
+
+
