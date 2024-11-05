@@ -495,8 +495,8 @@ margin-right: 5px;
 
 .quick_add-expense button {
   margin-bottom: 10px;
-  font-size: 16px;
-  padding: 10px 10px;
+  font-size: 15px;
+  padding: 10px 0px;
   border-radius: 20px;
   color: #000000;
   background-color: #f0a500;
@@ -601,7 +601,7 @@ margin-right: 5px;
 
 .category-item {
   background-color: #D46A6A;
-  color: white;
+  color: rgb(5, 2, 2);
   display: flex;
   justify-content: space-between;
   padding: 70px;
