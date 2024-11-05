@@ -127,9 +127,6 @@ while ($row = $result->fetch_assoc()) {
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newSavingsModal"><img src="assets/rectangle39.png"> New Savings </button>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newGoalModal"><img src="assets/goal.png"> New Goal </button>
             </div>
-            <div class = "edit-btn">
-                <button type = "button" class="btn btn-primary" data-bs-toggle="modal">Edit</button>
-            </div>
         </div>
     </div>
     <!-- New Savings Modal -->
