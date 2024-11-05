@@ -24,7 +24,7 @@ $user = $result->fetch_assoc();
 $TIncome = $user['total_income'];
 $TExpense = $user['total_expense'];
 $TSavings = $user['total_savings'];
-$TRemaining = $user['total_remaining_balance'];
+$TRemaining = is_numeric($user['total_remaining_balance']) ? $user['total_remaining_balance'] : 0;
 $stmt->close();
 ?>
 
@@ -93,6 +93,33 @@ $stmt->close();
             <!-- Charts Section -->
             <div class="charts">
                 <div class="dbcf">
+                    <script>
+                        // Balance Chart
+                        document.addEventListener('DOMContentLoaded', function () {
+                            console.log("<?php echo $TIncome; ?>");
+                            const remainingBalance = parseFloat("<?php echo $TRemaining; ?>");
+                            const totalSpent = parseFloat("<?php echo $TExpense; ?>");  
+
+                            new Chart('myChart', {
+                                type: "pie",
+                                data: {
+                                labels: ["Total Spent", "Remaining Balance"],
+                                datasets: [{
+                                    backgroundColor: ["#b91d47", "#00FF00"],
+                                    data: [totalSpent, remainingBalance]
+                                }]
+                                },
+                                options: {
+                                title: {
+                                    display: true,
+                                    text: "Balance Chart"
+                                }
+                                }
+                            });
+                        });
+
+                        // Bar Graph
+                    </script>
                         <canvas id="myChart" style="width:30%; max-width: 302px; height: initial; margin: 2rem;"></canvas>
                         <canvas id="yourChart" style="width:70%; max-width: 400px; margin: 2rem;"></canvas>
                 </div>
