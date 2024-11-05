@@ -330,7 +330,8 @@ while ($row = $result->fetch_assoc()) {
                         <th scope="col">Description</th>
                         <th scope="col">Amount</th>
                         <th scope="col">Category</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Actions</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -356,6 +357,7 @@ while ($row = $result->fetch_assoc()) {
                             echo "<td>" . $row["income_description"] . "</td>";
                             echo "<td>" . $row["income_amount"] . "</td>";
                             echo "<td>" . $row["category_name"] . "</td>";
+                            echo "<td><a href='config/income_edit.php?income_id=" . $row["income_id"] . "' class='btn btn-primary'>Edit</a></td>";
                             echo "<td><a href='config/income_delete.php?income_id=" . $row["income_id"] . "' class='btn btn-danger'>Delete</a></td>";
                             echo "</tr>";
                         }
@@ -389,7 +391,6 @@ while ($row = $result->fetch_assoc()) {
                 </table>
             </div>
 
-            </div>
             <div class="quick_add">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newIncomeModal"> New Income </button>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newIncomeSourceModal"> New Income Source </button>
