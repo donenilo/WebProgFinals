@@ -340,12 +340,12 @@ margin-right: 5px;
   font-family: "Inria Serif";
   font-size: 64px;
   color: #ffffff;
+  text-align: center;
   
 }
 .hexpense{
   padding: 10px;
   background-color: #8E1717;
-  text-align: center;}
   .hdashboard{background-color: #1C3F74;}
   .hincome{background-color: #C36629;}
 
