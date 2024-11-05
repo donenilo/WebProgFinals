@@ -51,18 +51,7 @@ while ($row = $result->fetch_assoc()) {
                 <a href="logout.php">Logout</a>
             </div>
         </nav>
-        <style>
-        .table th{
-      
-          }
-        .table-body{
-        display: flex;
-        flex-direction: row;
-         padding: 100px;
-    
-    }
-    
-</style>
+
         <!-- Main Content -->
         <div class="main-content">
             <h1 class="hexpense">Expense</h1>
@@ -99,30 +88,7 @@ while ($row = $result->fetch_assoc()) {
             </div>
             <div class="expense_category_display">
 
-            <div class="category_table_display">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Expense Category</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $query = "SELECT CONCAT(C.category_name, ': ', SUM(E.expense_amount)) AS `Expense Category` FROM Expense AS E JOIN Categories AS C ON E.category_id = C.category_id WHERE C.category_type = 'Expense' AND E.User_id = $user_id GROUP BY E.category_id;";
-                        $result = mysqli_query($conn, $query);
-                        if (!$result) {
-                            die("Query failed: " . mysqli_error($conn));
-                        }
-                        // output data of each row
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr>";
-                            echo "<td>" . $row["Expense Category"] . "</td>";
-                            echo "</tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
+
             <div class="quick_add-expense">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newExpenseModal"> New Expense </button>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newExpenseCategoryModal"> New Expense Category </button>
@@ -194,30 +160,31 @@ while ($row = $result->fetch_assoc()) {
     </form>
    
     <!-- Categories Section -->
-<div class="categories-section">
-    <div class="categories-header">
-        <h3>Categories</h3>
-    </div>
-    <div class="categories-list">
-        <?php
-        $query = "SELECT C.category_name, SUM(E.expense_amount) AS total_amount 
-                  FROM Expense AS E 
-                  JOIN Categories AS C ON E.category_id = C.category_id 
-                  WHERE C.category_type = 'Expense' AND E.User_id = $user_id 
-                  GROUP BY E.category_id;";
-        $result = mysqli_query($conn, $query);
-        if (!$result) {
-            die("Query failed: " . mysqli_error($conn));
-        }
-        // Output each category with total expenses
-        while ($row = $result->fetch_assoc()) {
-            echo "<div class='category-item'>";
-            echo "<span class='category-name'>" . htmlspecialchars($row["category_name"]) . "</span>";
-            echo "<span class='category-amount'>₱" . number_format($row["total_amount"], 2) . "</span>";
-            echo "</div>";
-        }
-        ?>
-    </div>
+    <div class="categories-section">
+        <div class="categories-header">
+            <h3>Categories</h3>
+        </div>
+        <div class="categories-list">
+            <?php
+            $query = "SELECT C.category_name, SUM(E.expense_amount) AS total_amount 
+                    FROM Expense AS E 
+                    JOIN Categories AS C ON E.category_id = C.category_id 
+                    WHERE C.category_type = 'Expense' AND E.User_id = $user_id 
+                    GROUP BY E.category_id;";
+            $result = mysqli_query($conn, $query);
+            if (!$result) {
+                die("Query failed: " . mysqli_error($conn));
+            }
+            // Output each category with total expenses
+            while ($row = $result->fetch_assoc()) {
+                echo "<div class='category-item'>";
+                echo "<span class='category-name'>" . htmlspecialchars($row["category_name"]) . " </span>";
+                echo "<span class='category-amount'> ₱" . number_format($row["total_amount"], 2) . "</span>";
+                echo "</div>";
+            }
+            ?>
+        </div>
+            
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

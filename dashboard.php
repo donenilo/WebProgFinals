@@ -60,115 +60,118 @@ $stmt->close();
 
         <!-- Main Content -->
         <div class="main-content">
-            <h1 class="hdashboard">Dashboard</h1>
+            <div class="top_section">
+                <h1 class="hdashboard">Dashboard</h1>
 
-            <!-- Balance Cards -->
-            <div class="card-container">
-                <div class="card balance">
-                    <p>Total Balance</p>
-                    <h2 id="total-balance"><?php echo $TRemaining; ?></h2>
+                <!-- Balance Cards -->
+                <div class="card-container">
+                    <div class="card balance">
+                        <p>Total Balance</p>
+                        <h2 id="total-balance"><?php echo $TRemaining; ?></h2>
+                    </div>
+                    <div class="card savings">
+                        <p>Total Savings</p>
+                        <h2 id="total-savings"><?php echo $TSavings; ?></h2>
+                    </div>
+                    <div class="card income">
+                        <p>Total Income</p>
+                        <h2 id="total-income"><?php echo $TIncome; ?></h2>
+                    </div>
+                    <div class="card expense">
+                        <p>Total Expense</p>
+                        <h2 id="total-expense"><?php echo $TExpense; ?></h2>
+                    </div>
                 </div>
-                <div class="card savings">
-                    <p>Total Savings</p>
-                    <h2 id="total-savings"><?php echo $TSavings; ?></h2>
-                </div>
-                <div class="card income">
-                    <p>Total Income</p>
-                    <h2 id="total-income"><?php echo $TIncome; ?></h2>
-                </div>
-                <div class="card expense">
-                    <p>Total Expense</p>
-                    <h2 id="total-expense"><?php echo $TExpense; ?></h2>
-                </div>
-            </div>
 
-            <!-- Quick Add Section -->
-            <div class="quick_add">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newIncomeModal">⬆️ New Income</button>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newExpenseModal">💲 New Expense</button>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newGoalModal">🐖 New Savings Goal</button>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newSavingsModal">🐖 Deposit Savings </button>
-            </div>
+                <!-- Quick Add Section -->
+                <div class="quick_add">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newIncomeModal">⬆️ New Income</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newExpenseModal">💲 New Expense</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newGoalModal">🐖 New Savings Goal</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newSavingsModal">🐖 Deposit Savings </button>
+                </div>
 
-            <!-- Charts Section -->
-            <div class="charts">
-                <div class="dbcf">
-                    <script>
-                        // Balance Chart
-                        document.addEventListener('DOMContentLoaded', function () {
-                            console.log("<?php echo $TIncome; ?>");
-                            const remainingBalance = parseFloat("<?php echo $TRemaining; ?>");
-                            const totalSpent = parseFloat("<?php echo $TExpense; ?>");  
+                <!-- Charts Section -->
+                <div class="charts">
+                    <div class="dbcf">
+                        <script>
+                            // Balance Chart
+                            document.addEventListener('DOMContentLoaded', function () {
+                                console.log("<?php echo $TIncome; ?>");
+                                const remainingBalance = parseFloat("<?php echo $TRemaining; ?>");
+                                const totalSpent = parseFloat("<?php echo $TExpense; ?>");  
 
-                            new Chart('myChart', {
-                                type: "pie",
-                                data: {
-                                labels: ["Total Spent", "Remaining Balance"],
-                                datasets: [{
-                                    backgroundColor: ["#b91d47", "#00FF00"],
-                                    data: [totalSpent, remainingBalance]
-                                }]
-                                },
-                                options: {
-                                title: {
-                                    display: true,
-                                    text: "Balance Chart"
-                                }
-                                }
+                                new Chart('myChart', {
+                                    type: "pie",
+                                    data: {
+                                    labels: ["Total Spent", "Remaining Balance"],
+                                    datasets: [{
+                                        backgroundColor: ["#b91d47", "#00FF00"],
+                                        data: [totalSpent, remainingBalance]
+                                    }]
+                                    },
+                                    options: {
+                                    title: {
+                                        display: true,
+                                        text: "Balance Chart"
+                                    }
+                                    }
+                                });
                             });
-                        });
 
-                        // Bar Graph
-                    </script>
-                        <canvas id="myChart" style="width:30%; max-width: 302px; height: initial; margin: 2rem;"></canvas>
-                        <canvas id="yourChart" style="width:70%; max-width: 400px; margin: 2rem;"></canvas>
+                            // Bar Graph
+                        </script>
+                            <canvas id="myChart" style="width:30%; max-width: 302px; height: initial; margin: 2rem;"></canvas>
+                            <canvas id="yourChart" style="width:70%; max-width: 400px; margin: 2rem;"></canvas>
+                    </div>
                 </div>
             </div>
+            <div class="bottom_section">
+                <!-- Goals Tracking Placeholder -->
+                <div class="goals-placeholder">
+                    <h3>Goals Tracking</h3>
+                    <p>Goals data will be shown here...</p>
+                </div>
 
-            <!-- Goals Tracking Placeholder -->
-            <div class="goals-placeholder">
-                <h3>Goals Tracking</h3>
-                <p>Goals data will be shown here...</p>
-            </div>
-
-            <!-- Recent Transactions -->
-            <div class="transactions">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Recent Transactions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $query = "SELECT CONCAT(' ● ', I.income_description, ' | ', I.income_amount, 'Php | ', C.category_type) AS recent_transaction, I.income_date AS transaction_date FROM income AS I JOIN Categories AS C ON I.category_id = C.category_id WHERE C.User_id = ?
-                                UNION ALL 
-                                SELECT CONCAT(' ● ', E.expense_description, ' | ', E.expense_amount, 'Php | ', C.category_type) AS recent_transaction, E.expense_date AS transaction_date FROM expense AS E JOIN Categories AS C ON E.category_id = C.category_id WHERE C.User_id = ?
-                                UNION ALL
-                                SELECT CONCAT(' ● ', S.savings_description, ' | ', S.savings_amount, 'Php | ', C.category_type) AS recent_transaction,
-                                    S.savings_date AS transaction_date FROM savings AS S JOIN Categories AS C ON S.category_id = C.category_id WHERE C.User_id = ?
-                                ORDER BY transaction_date DESC";
-            
-                        $stmt = $conn->prepare($query);
-                        if ($stmt === false) {
-                            die("Prepare failed: " . $conn->error);
-                        }
-                        $stmt->bind_param("iii", $user_id, $user_id, $user_id);
-                        $stmt->execute();
-                        $result = $stmt->get_result();
-                        if(!$result) {
-                            die("Query failed: " . $conn->error);
-                        }
-            
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr>";
-                            echo "<td>" . $row["recent_transaction"] . "</td>";
-                            echo "</tr>";
-                        }
-                        $stmt->close();
-                        ?>
-                    </tbody>
-                </table>
+                <!-- Recent Transactions -->
+                <div class="transactions">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Recent Transactions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $query = "SELECT CONCAT(' ● ', I.income_description, ' | ', I.income_amount, 'Php | ', C.category_type) AS recent_transaction, I.income_date AS transaction_date FROM income AS I JOIN Categories AS C ON I.category_id = C.category_id WHERE C.User_id = ?
+                                    UNION ALL 
+                                    SELECT CONCAT(' ● ', E.expense_description, ' | ', E.expense_amount, 'Php | ', C.category_type) AS recent_transaction, E.expense_date AS transaction_date FROM expense AS E JOIN Categories AS C ON E.category_id = C.category_id WHERE C.User_id = ?
+                                    UNION ALL
+                                    SELECT CONCAT(' ● ', S.savings_description, ' | ', S.savings_amount, 'Php | ', C.category_type) AS recent_transaction,
+                                        S.savings_date AS transaction_date FROM savings AS S JOIN Categories AS C ON S.category_id = C.category_id WHERE C.User_id = ?
+                                    ORDER BY transaction_date DESC";
+                
+                            $stmt = $conn->prepare($query);
+                            if ($stmt === false) {
+                                die("Prepare failed: " . $conn->error);
+                            }
+                            $stmt->bind_param("iii", $user_id, $user_id, $user_id);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+                            if(!$result) {
+                                die("Query failed: " . $conn->error);
+                            }
+                
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . $row["recent_transaction"] . "</td>";
+                                echo "</tr>";
+                            }
+                            $stmt->close();
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
