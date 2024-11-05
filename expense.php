@@ -70,10 +70,10 @@ while ($row = $result->fetch_assoc()) {
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Date</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Category</th>
+                            <th scope="col"><img src="assets/rectangle 32.png">Date</th>
+                            <th scope="col"><img src="assets/rectangle 35.png">Description</th>
+                            <th scope="col"><img src="assets/rectangle 39.png">Amount</th>
+                            <th scope="col"><img src="assets/rectangle 40.png">Category</th>
                         </tr>
                     </thead>
                     <tbody>
