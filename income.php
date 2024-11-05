@@ -100,7 +100,7 @@ while ($row = $result->fetch_assoc()) {
             </table>
             </div>
             <div class = "edit-btn">
-                <button type = "button" class="btn btn-primary" data-bs-toggle="modal">Edit</button>
+                <button type = "button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editFunctionModal">Edit</button>
             </div>
             <!-- Income Source Table -->
             <div class="income_sources">
@@ -193,6 +193,51 @@ while ($row = $result->fetch_assoc()) {
             </div>
         </div>
     </form>
+ <!-- Edit Function Modal -->
+<form action="config/income_edit.php" method="POST">
+    <div class="modal fade" id="editFunctionModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Income Details</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="income_id" id="edit_income_id"> <!-- Hidden field for income_id -->
+                    <div class="form-group">
+                        <label for="editDate">Date</label>
+                        <input type="date" class="form-control" name="income_date" id="editDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editIncomeDescription">Income Description</label>
+                        <input type="text" class="form-control" name="income_description" id="editIncomeDescription" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editIncomeAmount">Income Amount</label>
+                        <input type="number" class="form-control" name="income_amount" id="editIncomeAmount" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editIncomeSource">Income Source</label>
+                        <select id="editIncomeSource" name="category_id" class="form-control" required>
+                            <?php foreach ($categories as $category): ?>
+                                <option value="<?php echo htmlspecialchars($category['category_id']); ?>">
+                                    <?php echo htmlspecialchars($category['category_name']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>                
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
