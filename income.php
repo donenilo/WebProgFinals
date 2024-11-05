@@ -109,8 +109,8 @@ while ($row = $result->fetch_assoc()) {
             <!-- Income Source Table -->
             <div class="income_sources">
             <div class="quick_add-income">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newIncomeModal"> New Income </button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newIncomeSourceModal"> New Income Source </button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newIncomeModal"><img src="assets/rectangle42.png"> New Income </button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newIncomeSourceModal"><img src="assets/rectangle42.png"> New Income Source </button>
             </div>
         </div>
     </div>
@@ -219,7 +219,7 @@ while ($row = $result->fetch_assoc()) {
     <!-- Categories Section -->
     <div class="income-section">
         <div class="income-header">
-            <h3 class="income-section">Categories</h3>
+            <h3 class="income-section">Income Source</h3>
         </div>
         <div class="income-list">
             <?php

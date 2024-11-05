@@ -515,13 +515,13 @@ margin-right: 5px;
 .quick_add-income button {
   margin-bottom: 10px;
   font-size: 15px;
-  padding: 10px 0px;
+  padding: 10px 4px;
   border-radius: 20px;
   color: #000000;
   background-color: #f0a500;
   border-color: black;
   position: relative;
-  left: 730px;
+  left: 735px;
   bottom: -180px;
 }
 
@@ -674,7 +674,7 @@ margin-right: 5px;
 }
 
 .income-header h3 {
-  background-color: #EEB691;
+  background-color: #C36629;
   color: white;
   padding: 20px;
   margin: 0;
@@ -688,7 +688,7 @@ margin-right: 5px;
 }
 
 .income-item {
-  background-color: #D46A6A;
+  background-color: #EEB691;
   color: rgb(5, 2, 2);
   display: flex;
   justify-content: space-between;
