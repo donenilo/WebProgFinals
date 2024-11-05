@@ -55,7 +55,7 @@ while ($row = $result->fetch_assoc()) {
 
         <!-- Main Content -->
         <div class="main-content">
-            <h1 class="hincome"></h1>>Income</h1>
+            <h1 class="hincome">Income</h1>
             <div class="income_table_display">
             <table class="table">
                 <thead>

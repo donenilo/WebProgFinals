@@ -328,7 +328,7 @@ margin-right: 5px;
 
 .main-content {
   flex-grow: 1;
-  padding: 20px;
+  padding: 10px;
 }
 
 .main-content h1 {
@@ -341,13 +341,16 @@ margin-right: 5px;
   font-size: 64px;
   color: #ffffff;
   text-align: center;
+  padding: 10px;
+  border-radius: 30px;
   
 }
 .hexpense{
-  padding: 10px;
   background-color: #8E1717;
+}
   .hdashboard{background-color: #1C3F74;}
   .hincome{background-color: #C36629;}
+  .hsavings{background-color: #2C4F1C;}
 
 
 .expense_table_display .table {
