@@ -86,7 +86,7 @@ while ($row = $result->fetch_assoc()) {
                     </tbody>
                 </table>
                 <div class = "edit-btn">
-                    <button type = "button" class="btn btn-primary" data-bs-toggle="modal">Edit</button>
+                    <button type = "button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newEditFunction">Edit</button>
                 </div>
             </div>
             <div class="expense_category_display">
