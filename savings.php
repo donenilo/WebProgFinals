@@ -68,6 +68,7 @@ while ($row = $result->fetch_assoc()) {
                             <th scope="col"><img src="assets/rectangle35.png">Description</th>
                             <th scope="col"><img src="assets/rectangle39.png">Amount</th>
                             <th scope="col"><img src="assets/goal.png">Goal</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -85,6 +86,7 @@ while ($row = $result->fetch_assoc()) {
                             echo "<td>" . $row["savings_description"] . "</td>";
                             echo "<td>" . $row["savings_amount"] . "</td>";
                             echo "<td>" . $row["category_name"] . "</td>";
+                            echo "<td><a href='config/savings_delete.php?savings_id=" . $row["savings_id"] . "'class='btn btn-danger'>Delete</a></td>";
                             echo "</tr>";
                         }
                         ?>
@@ -100,12 +102,13 @@ while ($row = $result->fetch_assoc()) {
                             <th scope="col"><img src="assets/images 1.png">Target Amount</th>
                             <th scope="col"><img src="assets/rectangle39.png">Saved Amount</th>
                             <th scope="col"><img src="assets/rectangle32.png">Target Date</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         // insert query to get the goal data
-                        $query = "SELECT C.category_name AS 'Goal', SG.goal_amount AS 'Target Amount', COALESCE(SUM(S.savings_amount), 0) AS 'Saved Amount', SG.target_date AS 'Target Date'FROM Categories AS C JOIN SavingsGoals AS SG ON C.category_id = SG.category_id LEFT JOIN Savings AS S ON C.category_id = S.category_id WHERE C.category_type = 'Savings' GROUP BY C.category_id, SG.goal_amount, SG.target_date;";
+                        $query = "SELECT SG.goal_id ,C.category_name AS 'Goal', SG.goal_amount AS 'Target Amount', COALESCE(SUM(S.savings_amount), 0) AS 'Saved Amount', SG.target_date AS 'Target Date'FROM Categories AS C JOIN SavingsGoals AS SG ON C.category_id = SG.category_id LEFT JOIN Savings AS S ON C.category_id = S.category_id WHERE C.category_type = 'Savings' GROUP BY C.category_id, SG.goal_amount, SG.target_date;";
                         $result = mysqli_query($conn, $query);
                         if (!$result) {
                             die("Query failed: " . mysqli_error($conn));
@@ -117,6 +120,7 @@ while ($row = $result->fetch_assoc()) {
                             echo "<td>" . $row["Target Amount"] . "</td>";
                             echo "<td>" . $row["Saved Amount"] . "</td>";
                             echo "<td>" . $row["Target Date"] . "</td>";
+                            echo "<td><a href='config/goal_delete.php?goal_id=" . $row["goal_id"] . "' class='btn btn-danger'>Delete</a></td>";
                             echo "</tr>";
                         }
                         ?>
