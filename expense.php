@@ -63,6 +63,7 @@ while ($row = $result->fetch_assoc()) {
                             <th scope="col"><img src="assets/rectangle35.png">Description</th>
                             <th scope="col"><img src="assets/rectangle39.png">Amount</th>
                             <th scope="col"><img src="assets/rectangle40.png">Category</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -80,6 +81,7 @@ while ($row = $result->fetch_assoc()) {
                             echo "<td class='table-expense'>" . $row["expense_description"] . "</td>";
                             echo "<td class='table-expense'>" . $row["expense_amount"] . "</td>";
                             echo "<td class='table-expense'>" . $row["category_name"] . "</td>";
+                            echo "<td class='table-expense'><a href='config/expense_delete.php?expense_id=" . $row["expense_id"] . "'class='btn btn-danger'>Delete</a></td>";
                             echo "</tr>";
                         }
                         ?>
