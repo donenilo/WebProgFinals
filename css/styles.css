@@ -512,6 +512,19 @@ margin-right: 5px;
   bottom: -180px;
 }
 
+.quick_add-income button {
+  margin-bottom: 10px;
+  font-size: 15px;
+  padding: 10px 0px;
+  border-radius: 20px;
+  color: #000000;
+  background-color: #f0a500;
+  border-color: black;
+  position: relative;
+  left: 730px;
+  bottom: -180px;
+}
+
 .expense_disp {
   display: flex;
   flex-wrap: wrap;
@@ -653,22 +666,22 @@ margin-right: 5px;
     border: 1px solid #ddd;    /* Optional border for styling */
 }
 .income-section {
-   background-color: #f1f1f1;
+  background-color: #f1f1f1;
   padding: 20px;
   border-radius: 8px;
   max-width: 300px;
-  margin-bottom: 10px;
-  position: relative;
+  margin-top: 20px;
 }
 
 .income-header h3 {
   background-color: #EEB691;
   color: white;
-  padding: 10px;
+  padding: 20px;
   margin: 0;
   border-radius: 5px;
   text-align: center;
 }
+
 
 .income-list {
   margin-top: 10px;

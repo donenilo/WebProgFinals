@@ -108,7 +108,7 @@ while ($row = $result->fetch_assoc()) {
             </div>
             <!-- Income Source Table -->
             <div class="income_sources">
-            <div class="quick_add">
+            <div class="quick_add-income">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newIncomeModal"> New Income </button>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newIncomeSourceModal"> New Income Source </button>
             </div>
@@ -230,9 +230,9 @@ while ($row = $result->fetch_assoc()) {
                  }
             // output data of each row
             while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
+                echo "<div class='income-item'>";
                 echo "<td>" . $row["Income Source"] . "</td>";
-                echo "</tr>";
+                echo "</div>";
             }
             ?>
         </div>
