@@ -147,10 +147,16 @@ body {
   padding: 20px;
 }
 
+.top_section{
+  margin-bottom: 20px;
+}
+
 .bottom_section {
   display: flex;
   flex-direction: row;
   gap: 3vh;
+  margin-top: 20px;
+  padding-top: 20px;
 }
 
 .card-container {
