@@ -128,14 +128,6 @@ body {
   padding: 10px;
   border-radius: 5px;
 }
-
-.sidebar-line {
-  margin-top: 200px;
-  width: 200px;
-  height: 1.5px;
-  background: #969191;
-}
-
 .sidebar-footer {
   display: flex;
   justify-content: space-between;
@@ -262,7 +254,6 @@ body {
   color: #777;
   margin-bottom: 5px;
 }
-
 .form-group input[type="password"] {
   width: 100%;
   padding: 10px;

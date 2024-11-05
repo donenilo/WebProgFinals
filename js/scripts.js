@@ -44,3 +44,20 @@
 //     }
 // }
 // });
+
+
+
+//edit function
+
+// Example function to populate the edit modal
+function openEditModal(incomeId, incomeDate, incomeDescription, incomeAmount, categoryId) {
+    document.getElementById('edit_income_id').value = incomeId;
+    document.getElementById('editDate').value = incomeDate;
+    document.getElementById('editIncomeDescription').value = incomeDescription;
+    document.getElementById('editIncomeAmount').value = incomeAmount;
+    document.getElementById('editIncomeSource').value = categoryId;
+    
+    // Show the modal
+    var editModal = new bootstrap.Modal(document.getElementById('editFunctionModal'));
+    editModal.show();
+}
