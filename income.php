@@ -114,8 +114,8 @@ while ($row = $result->fetch_assoc()) {
 
             </div>
             <div class="quick_add">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newIncomeModal"> New Income </button>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newIncomeSourceModal"> New Income Source </button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newIncomeModal"> New Income </button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newIncomeSourceModal"> New Income Source </button>
             </div>
         </div>
     </div>
