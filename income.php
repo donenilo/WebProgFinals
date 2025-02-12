@@ -68,7 +68,7 @@ while ($row = $result->fetch_assoc()) {
                         <th scope="col">Amount</th>
                         <th scope="col">Category</th>
                         <th scope="col">Actions</th>
-                        <th scope="col"></th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
